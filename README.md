@@ -13,6 +13,19 @@ Welcome to my professional cybersecurity portfolio! As an IT professional, U.S. 
 
 ---
 
+## 🛡️ Certifications & Professional Credentials
+
+[![GFACT](https://img.shields.io/badge/GIAC-GFACT-blue?style=for-the-badge&logo=credly)](https://www.credly.com/)
+[![GISF](https://img.shields.io/badge/GIAC-GISF-blue?style=for-the-badge&logo=credly)](https://www.credly.com/)
+[![GSEC](https://img.shields.io/badge/GIAC-GSEC-blue?style=for-the-badge&logo=credly)](https://www.credly.com/)
+[![GCIH](https://img.shields.io/badge/GIAC-GCIH-blue?style=for-the-badge&logo=credly)](https://www.credly.com/)
+[![GPYC](https://img.shields.io/badge/GIAC-GPYC-blue?style=for-the-badge&logo=credly)](https://www.credly.com/)
+[![GCIA](https://img.shields.io/badge/GIAC-GCIA-blue?style=for-the-badge&logo=credly)](https://www.credly.com/)
+[![GCPN](https://img.shields.io/badge/GIAC-GCPN-%230077B5?style=for-the-badge&logo=credly)](https://www.credly.com/)
+[![LPN](https://img.shields.io/badge/Licensed-Practical%20Nurse-%232E8B57?style=for-the-badge&logo=gnomedebug)](https://www.credly.com/)
+
+
+
 ## 🏆 CTF Participation & Experience
 
 Participating in Capture the Flag (CTF) challenges has fundamentally transformed how I approach complex problem-solving. Moving away from clean, curated classroom scenarios into chaotic, multi-layered challenges taught me the importance of analytical patience, systematic tool development, and rigorous data validation.
