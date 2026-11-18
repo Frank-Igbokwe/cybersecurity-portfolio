@@ -4,9 +4,10 @@
 Welcome to my professional cybersecurity portfolio! As an IT professional, U.S. Military Veteran, Licensed Practical Nurse (18+ years), and Applied Cybersecurity (BACS) student at the SANS Technology Institute, this repository serves as my digital trophy shelf[cite: 3.2, 3.3]. It documents my practical journey through Capture the Flag (CTF) competitions, hands-on threat detection, and continuous technical growth.
 
 ---
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/your-profile)
 
 ## 🚀 About Me
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/your-profile)
+
 * **Background:** Blending over 18 years of clinical problem-solving in healthcare as an LPN, military service (U.S. Army & Air Force / Operation Noble Eagle), and a strong technical foundation in Information Technology (AS-IT, SANS BACS program, multiple GIAC certifications including GCPN)[cite: 3.2, 3.3].
 * **Core Focus:** Cyber Threat Intelligence (CTI), cryptanalysis, log automation pipelines, and defensive network security.
 * **Professional Goal:** Building resilient security infrastructure and transitioning technical defense capabilities to protect critical systems.
