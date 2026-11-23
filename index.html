@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -5,6 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Frank N. Igbokwe — Applied Cybersecurity Engineer, Cloud Penetration Tester, Threat Intelligence & MSSP Architect, SANS ISC Intern & Co-Author, and U.S. Military Veteran." />
   <title>Frank N. Igbokwe | Applied Cybersecurity &amp; Threat Intelligence</title>
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://frank-igbokwe.github.io/cybersecurity-portfolio/" />
+
+  <!-- Open Graph / LinkedIn Preview Tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Frank N. Igbokwe | Applied Cybersecurity" />
+  <meta property="og:title" content="Frank N. Igbokwe — Applied Cybersecurity & Threat Intelligence" />
+  <meta property="og:description" content="7x GIAC Certified (GCPN, GCIA, GCIH, GPYC, GSEC, GISF, GFACT), SANS ISC Guest Diary #33306 Co-Author, Honeypot-Omaha MSSP Architect, and U.S. Army & Air Force Veteran." />
+  <meta property="og:url" content="https://frank-igbokwe.github.io/cybersecurity-portfolio/" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter / X Card Tags -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Frank N. Igbokwe — Applied Cybersecurity & Threat Intelligence" />
+  <meta name="twitter:description" content="7x GIAC Certified, SANS ISC Guest Diary #33306 Co-Author, Honeypot-Omaha MSSP Architect, and U.S. Military Veteran." />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -27,6 +45,7 @@
       --accent-emerald: #10b981;
       --accent-emerald-dim: rgba(16, 185, 129, 0.12);
       --accent-amber: #f59e0b;
+      --accent-red: #ef4444;
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, monospace;
       --radius-sm: 0.5rem;
@@ -604,6 +623,7 @@
       padding-top: 1rem;
       border-top: 1px solid var(--border-subtle);
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 0.75rem;
@@ -623,6 +643,14 @@
     .card-link:hover {
       color: #7dd3fc;
       text-decoration: underline;
+    }
+
+    .card-link.youtube {
+      color: #f87171;
+    }
+
+    .card-link.youtube:hover {
+      color: #fca5a5;
     }
 
     /* ==========================================================================
@@ -785,7 +813,7 @@
 
     .connect-grid {
       display: grid;
-      grid-template-columns: 1.25fr 1fr;
+      grid-template-columns: 1.2fr 1.05fr;
       gap: 2rem;
       align-items: center;
     }
@@ -813,6 +841,10 @@
     .social-tile:hover {
       border-color: var(--accent-cyan);
       transform: translateY(-2px);
+    }
+
+    .social-tile.wide {
+      grid-column: span 2;
     }
 
     .copy-widget {
@@ -858,7 +890,7 @@
       background: rgba(56, 189, 248, 0.22);
     }
 
-    /* Toast Message Box (replaces alert) */
+    /* Toast Message Box */
     .toast {
       position: fixed;
       bottom: 1.5rem;
@@ -887,13 +919,13 @@
     }
 
     /* ==========================================================================
-       MODAL FOR ARCHITECTURE PREVIEW
+       MODAL FOR GUI DEMO VIDEO & ARCHITECTURE PREVIEW
        ========================================================================== */
     .modal-backdrop {
       position: fixed;
       inset: 0;
       z-index: 90;
-      background: rgba(3, 7, 18, 0.82);
+      background: rgba(3, 7, 18, 0.84);
       backdrop-filter: blur(6px);
       display: none;
       align-items: center;
@@ -907,13 +939,13 @@
 
     .modal-box {
       width: 100%;
-      max-width: 680px;
+      max-width: 780px;
       background: var(--bg-surface);
       border: 1px solid var(--border-accent);
       border-radius: var(--radius-lg);
       padding: 1.75rem;
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
-      max-height: 90vh;
+      max-height: 92vh;
       overflow-y: auto;
     }
 
@@ -942,12 +974,48 @@
       border-color: var(--accent-cyan);
     }
 
+    /* Responsive 16:9 YouTube Embed Frame */
+    .video-frame {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-accent);
+      background: #050811;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-caption-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+    }
+
     .arch-list {
       list-style: none;
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
-      margin-top: 1rem;
+      margin-top: 0.85rem;
     }
 
     .arch-list li {
@@ -1008,6 +1076,10 @@
       .pedigree-grid,
       .connect-links {
         grid-template-columns: 1fr;
+      }
+
+      .social-tile.wide {
+        grid-column: span 1;
       }
 
       .metrics-strip {
@@ -1191,8 +1263,11 @@
             </div>
             <div class="card-footer">
               <button type="button" class="card-link" id="openArchModalBtn">
-                Inspect Pipeline Architecture &rarr;
+                Watch GUI Demo &amp; Pipeline &rarr;
               </button>
+              <a href="https://www.youtube.com/channel/UCFf9YseKE2HvkzCkWM-rhVA" target="_blank" rel="noopener noreferrer" class="card-link youtube">
+                YouTube Channel &nearr;
+              </a>
             </div>
           </article>
 
@@ -1456,6 +1531,11 @@
                 <span>SANS ISC Diary #33306</span>
               </a>
 
+              <a href="https://www.youtube.com/@YOUR_CHANNEL_HANDLE" target="_blank" rel="noopener noreferrer" class="social-tile wide">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent-red); flex-shrink: 0;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                <span>YouTube Demos &amp; GUI Walkthroughs</span>
+              </a>
+
               <a href="https://github.com/sponsors/Frank-Igbokwe" target="_blank" rel="noopener noreferrer" class="social-tile">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #f472b6; flex-shrink: 0;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                 <span>GitHub Sponsors</span>
@@ -1482,17 +1562,37 @@
   </footer>
 
   <!-- ========================================================================
-       ARCHITECTURE PREVIEW MODAL
+       MODAL: HONEYPOT-OMAHA GUI WALKTHROUGH VIDEO & ARCHITECTURE
        ======================================================================== -->
   <div class="modal-backdrop" id="archModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-box">
       <div class="modal-header">
         <div>
-          <div class="section-kicker" style="margin-bottom: 0.2rem;">SYSTEM ARCHITECTURE</div>
-          <h3 id="modalTitle" style="font-size: 1.25rem; font-weight: 700;">Honeypot-Omaha MSSP Pipeline</h3>
+          <div class="section-kicker" style="margin-bottom: 0.2rem;">LIVE GUI DEMO &amp; SYSTEM ARCHITECTURE</div>
+          <h3 id="modalTitle" style="font-size: 1.25rem; font-weight: 700;">Honeypot-Omaha MSSP Platform</h3>
         </div>
         <button type="button" class="modal-close" id="closeArchModalBtn">ESC / Close</button>
       </div>
+
+      <!-- Responsive 16:9 Privacy-Enhanced YouTube Walkthrough Embed -->
+      <div class="video-frame">
+        <iframe
+          id="guiDemoIframe"
+          data-src="https://www.youtube-nocookie.com/embed/YOUR_VIDEO_ID?rel=0"
+          src=""
+          title="Honeypot-Omaha Enterprise Threat Intelligence GUI Walkthrough"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="video-caption-bar">
+        <span>7-Minute Walkthrough: PyQt6 4-Display Dashboard, <code>batch.py</code> Enrichment &amp; STIX 2.1 / SOAR</span>
+        <a href="https://www.youtube.com/@YOUR_CHANNEL_HANDLE" target="_blank" rel="noopener noreferrer" class="card-link youtube">
+          More Demos on YouTube &nearr;
+        </a>
+      </div>
+
       <p style="font-size: 0.92rem; color: var(--text-secondary);">
         End-to-end telemetry ingestion, behavioral analytics, and automated threat intelligence dissemination pipeline:
       </p>
@@ -1562,21 +1662,33 @@
         });
       });
 
-      // 3. Architecture Preview Modal
+      // 3. GUI Demo Video & Architecture Preview Modal (Lazy-Loads & Stops Video on Close)
       const archModal = document.getElementById('archModal');
       const openArchModalBtn = document.getElementById('openArchModalBtn');
       const closeArchModalBtn = document.getElementById('closeArchModalBtn');
+      const guiDemoIframe = document.getElementById('guiDemoIframe');
+
+      function openModal() {
+        if (!archModal) return;
+        if (guiDemoIframe) {
+          const embedSrc = guiDemoIframe.getAttribute('data-src');
+          if (embedSrc && guiDemoIframe.getAttribute('src') !== embedSrc) {
+            guiDemoIframe.setAttribute('src', embedSrc);
+          }
+        }
+        archModal.classList.add('open');
+      }
 
       function closeModal() {
-        if (archModal) {
-          archModal.classList.remove('open');
+        if (!archModal) return;
+        archModal.classList.remove('open');
+        if (guiDemoIframe) {
+          guiDemoIframe.setAttribute('src', '');
         }
       }
 
-      if (openArchModalBtn && archModal) {
-        openArchModalBtn.addEventListener('click', function () {
-          archModal.classList.add('open');
-        });
+      if (openArchModalBtn) {
+        openArchModalBtn.addEventListener('click', openModal);
       }
 
       if (closeArchModalBtn) {
