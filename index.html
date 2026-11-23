@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Frank N. Igbokwe — Applied Cybersecurity Engineer, Cloud Penetration Tester, Threat Intelligence & MSSP Architect, SANS ISC Intern & Co-Author, and U.S. Military Veteran." />
+  <title>Frank N. Igbokwe | Applied Cybersecurity &amp; Threat Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ==========================================================================
+       DESIGN TOKENS & CORE VARIABLES (SOC / THREAT INTEL COMMAND AESTHETIC)
+       ========================================================================== */
+    :root {
+      --bg-canvas: #090d16;
+      --bg-surface: #111827;
+      --bg-surface-elevated: #162033;
+      --bg-glass: rgba(17, 24, 39, 0.82);
+      --border-subtle: rgba(148, 163, 184, 0.14);
+      --border-accent: rgba(56, 189, 248, 0.38);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-cyan: #38bdf8;
+      --accent-cyan-dim: rgba(56, 189, 248, 0.12);
+      --accent-emerald: #10b981;
+      --accent-emerald-dim: rgba(16, 185, 129, 0.12);
+      --accent-amber: #f59e0b;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, monospace;
+      --radius-sm: 0.5rem;
+      --radius-md: 0.75rem;
+      --radius-lg: 1rem;
+      --shadow-card: 0 12px 32px -8px rgba(0, 0, 0, 0.55);
+      --shadow-glow: 0 0 28px rgba(56, 189, 248, 0.14);
+    }
+
+    /* ==========================================================================
+       RESET & BASE TYPOGRAPHY
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg-canvas);
+      background-image:
+        radial-gradient(circle at 15% 10%, rgba(56, 189, 248, 0.08) 0%, transparent 38%),
+        radial-gradient(circle at 85% 22%, rgba(16, 185, 129, 0.06) 0%, transparent 40%),
+        linear-gradient(rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+    }
+
+    /* ==========================================================================
+       STICKY NAVIGATION BAR
+       ========================================================================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--bg-glass);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 4.25rem;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0.04em;
+      color: var(--text-primary);
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--accent-emerald);
+      box-shadow: 0 0 10px var(--accent-emerald);
+      flex-shrink: 0;
+    }
+
+    .brand-divider {
+      color: var(--accent-cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.2s ease;
+      padding: 0.35rem 0;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent-cyan);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      background: var(--bg-surface);
+    }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      gap: 0.35rem;
+      padding: 0.75rem 1.25rem 1.25rem;
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+    }
+
+    .mobile-nav.open {
+      display: flex;
+    }
+
+    .mobile-nav a {
+      padding: 0.75rem 0.85rem;
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .mobile-nav a:hover {
+      background: var(--bg-surface-elevated);
+      color: var(--accent-cyan);
+    }
+
+    /* ==========================================================================
+       HERO SECTION
+       ========================================================================== */
+    .hero {
+      padding: 4.5rem 0 3.25rem;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      background: var(--accent-emerald-dim);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #6ee7b7;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-bottom: 1.5rem;
+      max-width: 100%;
+    }
+
+    .pulse-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent-emerald);
+      flex-shrink: 0;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.45fr 0.95fr;
+      gap: 2.25rem;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: clamp(2.35rem, 5vw, 3.65rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 0.85rem;
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.05rem, 2.1vw, 1.25rem);
+      font-weight: 600;
+      color: var(--accent-cyan);
+      margin-bottom: 1.25rem;
+      line-height: 1.45;
+    }
+
+    .hero-bio {
+      font-size: 1.02rem;
+      color: var(--text-secondary);
+      line-height: 1.72;
+      margin-bottom: 1.85rem;
+      max-width: 66ch;
+    }
+
+    .hero-bio code {
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+      color: var(--accent-cyan);
+      background: var(--accent-cyan-dim);
+      padding: 0.12rem 0.42rem;
+      border-radius: 0.35rem;
+    }
+
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.82rem 1.35rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+      color: #ffffff;
+      box-shadow: 0 8px 24px -6px rgba(14, 165, 233, 0.5);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 12px 28px -6px rgba(56, 189, 248, 0.65);
+    }
+
+    .btn-secondary {
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      border: 1px solid var(--border-accent);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-surface-elevated);
+      border-color: var(--accent-cyan);
+    }
+
+    .btn-ghost {
+      background: rgba(17, 24, 39, 0.6);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .btn-ghost:hover {
+      color: var(--text-primary);
+      border-color: rgba(148, 163, 184, 0.35);
+      background: var(--bg-surface);
+    }
+
+    /* Telemetry Terminal Card in Hero */
+    .terminal-card {
+      background: #0b1120;
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card), var(--shadow-glow);
+      overflow: hidden;
+    }
+
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      background: #111827;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 0.42rem;
+    }
+
+    .terminal-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+    }
+
+    .terminal-dots span:nth-child(1) { background: #ef4444; }
+    .terminal-dots span:nth-child(2) { background: #f59e0b; }
+    .terminal-dots span:nth-child(3) { background: #10b981; }
+
+    .terminal-title {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    .terminal-body {
+      padding: 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      line-height: 1.68;
+      color: #cbd5e1;
+    }
+
+    .t-prompt { color: var(--accent-emerald); }
+    .t-cmd { color: #f8fafc; font-weight: 600; }
+    .t-key { color: var(--accent-cyan); }
+    .t-val { color: #e2e8f0; }
+    .t-badge {
+      display: inline-block;
+      margin-top: 0.65rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 0.35rem;
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #6ee7b7;
+      font-size: 0.75rem;
+    }
+
+    /* Key Metrics Strip */
+    .metrics-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .metric-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .metric-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-2px);
+    }
+
+    .metric-value {
+      font-family: var(--font-mono);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 0.35rem;
+    }
+
+    .metric-label {
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    /* ==========================================================================
+       SECTIONS & HEADINGS
+       ========================================================================== */
+    .section {
+      padding: 4.25rem 0;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2.25rem;
+    }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-emerald);
+      margin-bottom: 0.45rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.65rem, 3vw, 2.15rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      max-width: 64ch;
+      font-size: 0.98rem;
+    }
+
+    /* Filter Pills for Projects */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 0.95rem;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--border-accent);
+    }
+
+    .filter-btn.active {
+      background: var(--accent-cyan-dim);
+      color: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+    }
+
+    /* ==========================================================================
+       PROJECT CARDS
+       ========================================================================== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.65rem;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-accent);
+      box-shadow: var(--shadow-card), var(--shadow-glow);
+    }
+
+    .card.hidden {
+      display: none;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.28rem 0.65rem;
+      border-radius: 999px;
+      background: var(--accent-cyan-dim);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+    }
+
+    .card-badge.emerald {
+      background: var(--accent-emerald-dim);
+      color: #6ee7b7;
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .card-title {
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      line-height: 1.35;
+    }
+
+    .card-title code {
+      font-family: var(--font-mono);
+      color: var(--accent-cyan);
+    }
+
+    .card-body {
+      font-size: 0.94rem;
+      color: var(--text-secondary);
+      line-height: 1.68;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-note {
+      font-size: 0.82rem;
+      color: #cbd5e1;
+      background: rgba(15, 23, 42, 0.75);
+      border-left: 3px solid var(--accent-emerald);
+      padding: 0.65rem 0.85rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: 1.25rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.42rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      padding: 0.25rem 0.58rem;
+      border-radius: 0.38rem;
+      background: #0b1120;
+      color: #cbd5e1;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .card-footer {
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      transition: color 0.2s ease;
+    }
+
+    .card-link:hover {
+      color: #7dd3fc;
+      text-decoration: underline;
+    }
+
+    /* ==========================================================================
+       RESEARCH & BENCHMARKS
+       ========================================================================== */
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .research-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.65rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .research-meta {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--accent-emerald);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .research-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .research-text {
+      font-size: 0.93rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+
+    .stat-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1rem;
+    }
+
+    .stat-pill {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 0.35rem;
+      background: var(--accent-cyan-dim);
+      color: var(--accent-cyan);
+    }
+
+    /* ==========================================================================
+       CREDENTIALS & SERVICE PEDIGREE
+       ========================================================================== */
+    .giac-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .giac-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .giac-card:hover {
+      border-color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+
+    .giac-code {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      background: var(--accent-cyan-dim);
+      padding: 0.25rem 0.6rem;
+      border-radius: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .giac-name {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.35rem;
+    }
+
+    .giac-focus {
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .pedigree-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    .pedigree-card {
+      background: linear-gradient(145deg, var(--bg-surface) 0%, #0d1424 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.4rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .pedigree-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: var(--radius-sm);
+      background: var(--accent-emerald-dim);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--accent-emerald);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .pedigree-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .pedigree-sub {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ==========================================================================
+       CONNECT & SPONSORSHIP
+       ========================================================================== */
+    .connect-box {
+      background: linear-gradient(135deg, #111827 0%, #0d1628 100%);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      box-shadow: var(--shadow-card), var(--shadow-glow);
+    }
+
+    .connect-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .connect-links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.85rem;
+    }
+
+    .social-tile {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.95rem 1.1rem;
+      border-radius: var(--radius-md);
+      background: #0b1120;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .social-tile:hover {
+      border-color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+
+    .copy-widget {
+      margin-top: 1.35rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.65rem;
+      background: #0b1120;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 0.65rem 0.85rem;
+      max-width: 100%;
+    }
+
+    .copy-label {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .copy-value {
+      font-family: var(--font-mono);
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--accent-cyan);
+    }
+
+    .copy-btn {
+      margin-left: auto;
+      padding: 0.45rem 0.85rem;
+      border-radius: 0.45rem;
+      background: var(--accent-cyan-dim);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: var(--accent-cyan);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+
+    .copy-btn:hover {
+      background: rgba(56, 189, 248, 0.22);
+    }
+
+    /* Toast Message Box (replaces alert) */
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 100;
+      background: #0f172a;
+      color: #f8fafc;
+      border: 1px solid var(--accent-emerald);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      padding: 0.85rem 1.2rem;
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       MODAL FOR ARCHITECTURE PREVIEW
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      background: rgba(3, 7, 18, 0.82);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 680px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .modal-close {
+      padding: 0.45rem 0.75rem;
+      border-radius: var(--radius-sm);
+      background: #0b1120;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+    }
+
+    .modal-close:hover {
+      color: var(--text-primary);
+      border-color: var(--accent-cyan);
+    }
+
+    .arch-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .arch-list li {
+      background: #0b1120;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.85rem 1rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .arch-list strong {
+      color: var(--accent-cyan);
+      font-family: var(--font-mono);
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    .footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 2rem 0 2.75rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 980px) {
+      .hero-grid,
+      .connect-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid,
+      .research-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .metrics-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+
+      .projects-grid,
+      .research-grid,
+      .pedigree-grid,
+      .connect-links {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 3rem;
+      }
+
+      .connect-box {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       TOP NAVIGATION BAR
+       ======================================================================== -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#about" class="brand" aria-label="Frank Igbokwe Home">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>FRANK IGBOKWE <span class="brand-divider">//</span> SEC-OPS</span>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Flagship Systems</a></li>
+          <li><a href="#research">Research &amp; CTF</a></li>
+          <li><a href="#credentials">Credentials</a></li>
+          <li><a href="#connect">Connect</a></li>
+        </ul>
+      </nav>
+
+      <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile Navigation">
+      <a href="#about">About</a>
+      <a href="#projects">Flagship Systems</a>
+      <a href="#research">Research &amp; CTF</a>
+      <a href="#credentials">Credentials</a>
+      <a href="#connect">Connect</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         HERO & EXECUTIVE SUMMARY SECTION
+         ====================================================================== -->
+    <section id="about" class="hero">
+      <div class="container">
+        <div class="status-pill">
+          <span class="pulse-indicator" aria-hidden="true"></span>
+          <span>AVAILABLE FOR CYBERSECURITY CONSULTING, CLOUD PENTESTING &amp; MSSP ENGAGEMENTS</span>
+        </div>
+
+        <div class="hero-grid">
+          <div>
+            <h1 class="hero-title">Frank N. Igbokwe</h1>
+            <p class="hero-subtitle">Applied Cybersecurity Engineer &bull; Cloud Penetration Tester &bull; Threat Intelligence &amp; MSSP Architect</p>
+            <p class="hero-bio">
+              U.S. Army &amp; Air Force Veteran (Operation Noble Eagle) and 18+ year healthcare clinical professional transitioning deep operational discipline into offensive and defensive cybersecurity. B.S. in Applied Cybersecurity candidate at the SANS Technology Institute, SANS Internet Storm Center (ISC) Intern &amp; Co-Author, and builder of the <code>Honeypot-Omaha</code> enterprise threat intelligence platform.
+            </p>
+
+            <div class="cta-group">
+              <a href="#projects" class="btn btn-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                Explore Honeypot-Omaha
+              </a>
+              <a href="https://isc.sans.edu/diary/33306" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                Read SANS ISC Guest Diary
+              </a>
+              <a href="https://github.com/Frank-Igbokwe" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.05 11.05 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.8-.01 3.18 0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+                GitHub Profile
+              </a>
+            </div>
+          </div>
+
+          <!-- Operator Profile Terminal Card -->
+          <aside class="terminal-card" aria-label="Operator Telemetry Summary">
+            <div class="terminal-header">
+              <div class="terminal-dots" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="terminal-title">operator_profile.json &mdash; Albany, NY</span>
+            </div>
+            <div class="terminal-body">
+              <div><span class="t-prompt">$</span> <span class="t-cmd">cat /etc/secops/operator.conf</span></div>
+              <div style="margin-top: 0.6rem;">
+                <div><span class="t-key">HANDLE:</span> <span class="t-val">"Frank-Igbokwe"</span></div>
+                <div><span class="t-key">REGION:</span> <span class="t-val">"Albany Capital Region, NY"</span></div>
+                <div><span class="t-key">GIAC_CERTS:</span> <span class="t-val">["GCPN","GCIA","GCIH","GPYC","GSEC","GISF","GFACT"]</span></div>
+                <div><span class="t-key">TELEMETRY_STACK:</span> <span class="t-val">"AWS EC2 &bull; DShield &bull; Cowrie &bull; STIX 2.1"</span></div>
+                <div><span class="t-key">TAXONOMY:</span> <span class="t-val">"RIPLE Incident Lifecycle"</span></div>
+                <div><span class="t-key">SERVICE:</span> <span class="t-val">"U.S. Army &amp; USAF Veteran (Op Noble Eagle)"</span></div>
+              </div>
+              <div class="t-badge">STATUS: ACTIVE THREAT RESEARCH &amp; CONSULTING</div>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Key Metrics Strip -->
+        <div class="metrics-strip">
+          <div class="metric-card">
+            <div class="metric-value">7x GIAC</div>
+            <div class="metric-label">Certified across Cloud Pentesting, Intrusion Analysis, Incident Handling &amp; Python (GCPN, GCIA, GCIH, GPYC, GSEC, GISF, GFACT)</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">93rd %ile</div>
+            <div class="metric-label">NCL Fall 2026 Team Ranking (99th %ile Password Cracking, 98th %ile Log &amp; Network Traffic Analysis)</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">SANS ISC</div>
+            <div class="metric-label">Published Guest Diary Co-Author (#33306) on empirical honeypot telemetry &amp; automated triage</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">18+ Yrs</div>
+            <div class="metric-label">High-stakes clinical healthcare operations &amp; U.S. military operational discipline</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         FLAGSHIP ENGINEERING & THREAT INTELLIGENCE
+         ====================================================================== -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">// 01. SYSTEMS &amp; TOOLING</div>
+            <h2 class="section-title">Flagship Engineering &amp; Threat Intelligence</h2>
+          </div>
+
+          <div class="filter-bar" role="group" aria-label="Filter projects by category">
+            <button type="button" class="filter-btn active" data-filter="all">All Systems</button>
+            <button type="button" class="filter-btn" data-filter="mssp">MSSP &amp; Telemetry</button>
+            <button type="button" class="filter-btn" data-filter="opensource">Open Source CLI</button>
+            <button type="button" class="filter-btn" data-filter="framework">DFIR Framework</button>
+          </div>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid">
+          <!-- Card 1: Honeypot-Omaha -->
+          <article class="card" data-category="mssp">
+            <div>
+              <div class="card-top">
+                <span class="card-badge">FLAGSHIP MSSP PLATFORM</span>
+                <span class="mono" style="font-size: 0.75rem; color: var(--text-muted);">ENTERPRISE GUI</span>
+              </div>
+              <h3 class="card-title"><code>Honeypot-Omaha</code> Enterprise Threat Intelligence &amp; MSSP Platform</h3>
+              <p class="card-body">
+                Multi-tenant threat detection, enrichment, and response architecture ingesting live AWS EC2 DShield and Cowrie SSH/Telnet sensor telemetry. Features a four-display PyQt6 command dashboard, PostgreSQL &amp; SQLite WAL storage, FastAPI portal, Isolation Forest UEBA anomaly detection, automated PCAP reconstruction, and SOAR / STIX 2.1 / SIEM CEF export pipelines.
+              </p>
+              <div class="card-note">
+                Proprietary MSSP Architecture (Enterprise GUI) paired with open-source CLI automation.
+              </div>
+              <div class="tag-list">
+                <span class="tag">Python</span>
+                <span class="tag">PyQt6</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">Scikit-Learn UEBA</span>
+                <span class="tag">STIX 2.1 / SOAR</span>
+                <span class="tag">AWS EC2</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button type="button" class="card-link" id="openArchModalBtn">
+                Inspect Pipeline Architecture &rarr;
+              </button>
+            </div>
+          </article>
+
+          <!-- Card 2: honeypot-omaha-batch -->
+          <article class="card" data-category="opensource">
+            <div>
+              <div class="card-top">
+                <span class="card-badge emerald">OPEN SOURCE (BSL-1.1)</span>
+                <span class="mono" style="font-size: 0.75rem; color: var(--text-muted);">PYTHON CLI</span>
+              </div>
+              <h3 class="card-title"><code>honeypot-omaha-batch</code> (<code>batch.py</code>)</h3>
+              <p class="card-body">
+                High-throughput automated log parsing and threat intelligence correlation pipeline. Enriches raw Cowrie and DShield attack telemetry across <code>ip-api.com</code>, <code>cve.org</code>, VirusTotal, and Shodan into structured JSON, CSV, and tactical visual intelligence reports for rapid analyst triage.
+              </p>
+              <div class="tag-list">
+                <span class="tag">Open Source (BSL-1.1)</span>
+                <span class="tag">Python 3.8+</span>
+                <span class="tag">Threat Enrichment</span>
+                <span class="tag">OSINT</span>
+                <span class="tag">CLI Automation</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="https://github.com/Frank-Igbokwe/honeypot-omaha-batch" target="_blank" rel="noopener noreferrer" class="card-link">
+                View Repository on GitHub &nearr;
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 3: RIPLE Incident Lifecycle Framework -->
+          <article class="card" data-category="framework">
+            <div>
+              <div class="card-top">
+                <span class="card-badge">THREAT TAXONOMY</span>
+                <span class="mono" style="font-size: 0.75rem; color: var(--text-muted);">SOC &amp; DFIR</span>
+              </div>
+              <h3 class="card-title">RIPLE Incident Lifecycle Framework</h3>
+              <p class="card-body">
+                Custom post-compromise attacker behavioral taxonomy &mdash; <strong>R</strong>econnaissance, <strong>I</strong>nitial exploitation, <strong>P</strong>ersistence-Privilege escalation, <strong>L</strong>ateral movement, <strong>E</strong>xfiltration of data &mdash; engineered to bridge technical SOC triage with executive CISO threat briefings.
+              </p>
+              <div class="tag-list">
+                <span class="tag">Threat Hunting</span>
+                <span class="tag">Incident Response</span>
+                <span class="tag">DFIR</span>
+                <span class="tag">Threat Modeling</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="https://isc.sans.edu/diary/33306" target="_blank" rel="noopener noreferrer" class="card-link">
+                Applied in SANS ISC Diary #33306 &nearr;
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         PUBLISHED RESEARCH & COMPETITIVE BENCHMARKS
+         ====================================================================== -->
+    <section id="research" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">// 02. PUBLICATIONS &amp; COMPETITIVE BENCHMARKS</div>
+            <h2 class="section-title">Published Research &amp; Cyber Exercises</h2>
+          </div>
+          <p class="section-desc">
+            Peer-reviewed Internet Storm Center telemetry analysis and national-level adversarial capture-the-flag operations.
+          </p>
+        </div>
+
+        <div class="research-grid">
+          <!-- SANS ISC Diary -->
+          <article class="research-card">
+            <div>
+              <div class="research-meta">SANS INTERNET STORM CENTER &bull; DIARY #33306</div>
+              <h3 class="research-title">SANS ISC Guest Diary Co-Author</h3>
+              <p class="research-text">
+                Co-authored with Dr. Johannes Ullrich, detailing empirical attack patterns captured by <code>Honeypot-Omaha</code> sensors and automated multi-source telemetry triage using <code>batch.py</code>.
+              </p>
+            </div>
+            <div>
+              <a href="https://isc.sans.edu/diary/33306" target="_blank" rel="noopener noreferrer" class="card-link">
+                Read Full SANS ISC Diary #33306 &nearr;
+              </a>
+            </div>
+          </article>
+
+          <!-- National Cyber League -->
+          <article class="research-card">
+            <div>
+              <div class="research-meta">NATIONAL CYBER LEAGUE &bull; FALL 2026 SEASON</div>
+              <h3 class="research-title">Team SANS.edu Ctrl+Alt+Defeat</h3>
+              <p class="research-text">
+                Placed <strong>223rd out of 3,034 teams</strong> (93rd percentile overall, 86% accuracy) across live offensive and defensive tracks.
+              </p>
+              <div class="stat-pills">
+                <span class="stat-pill">99th %ile Password Cracking</span>
+                <span class="stat-pill">98th %ile Log Analysis</span>
+                <span class="stat-pill">98th %ile Network Traffic Analysis</span>
+              </div>
+            </div>
+            <div class="mono" style="font-size: 0.78rem; color: var(--text-muted);">
+              VERIFIED COMPETITIVE TELEMETRY
+            </div>
+          </article>
+
+          <!-- NSA Codebreaker Challenge -->
+          <article class="research-card">
+            <div>
+              <div class="research-meta">NSA CODEBREAKER CHALLENGE &bull; NOV 2026</div>
+              <h3 class="research-title">Host Forensics &amp; Memory Analysis</h3>
+              <p class="research-text">
+                Conducted Linux syslog forensics and workstation memory dump analysis to uncover multi-stage adversary persistence mechanisms, credential harvesting artifacts, and hidden operational anomalies.
+              </p>
+            </div>
+            <div class="mono" style="font-size: 0.78rem; color: var(--text-muted);">
+              LINUX SYSLOG &amp; VOLATILE MEMORY DFIR
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         CERTIFICATIONS & SERVICE PEDIGREE
+         ====================================================================== -->
+    <section id="credentials" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">// 03. VERIFIED CREDENTIALS &amp; PEDIGREE</div>
+            <h2 class="section-title">7x GIAC Certifications &amp; Operational Background</h2>
+          </div>
+          <p class="section-desc">
+            Hands-on technical validation spanning cloud penetration testing, packet-level intrusion analysis, incident handling, and security automation.
+          </p>
+        </div>
+
+        <!-- 7 GIAC Certifications Grid -->
+        <div class="giac-grid">
+          <div class="giac-card">
+            <span class="giac-code">GCPN</span>
+            <h3 class="giac-name">GIAC Cloud Penetration Tester</h3>
+            <p class="giac-focus">AWS, Azure, and GCP offensive security assessment, IAM privilege escalation, and cloud exploitation.</p>
+          </div>
+
+          <div class="giac-card">
+            <span class="giac-code">GCIA</span>
+            <h3 class="giac-name">GIAC Certified Intrusion Analyst</h3>
+            <p class="giac-focus">Packet-level inspection, Zeek, Wireshark, protocol behavioral analysis, and network anomaly hunting.</p>
+          </div>
+
+          <div class="giac-card">
+            <span class="giac-code">GCIH</span>
+            <h3 class="giac-name">GIAC Certified Incident Handler</h3>
+            <p class="giac-focus">End-to-end incident response, adversary TTP detection, eradication, and containment workflows.</p>
+          </div>
+
+          <div class="giac-card">
+            <span class="giac-code">GPYC</span>
+            <h3 class="giac-name">GIAC Python Coder</h3>
+            <p class="giac-focus">Security automation, custom telemetry parsers, API threat enrichment, and defensive/offensive tooling.</p>
+          </div>
+
+          <div class="giac-card">
+            <span class="giac-code">GSEC</span>
+            <h3 class="giac-name">GIAC Security Essentials</h3>
+            <p class="giac-focus">Enterprise defense-in-depth architecture, endpoint hardening, access control, and cryptographic implementation.</p>
+          </div>
+
+          <div class="giac-card">
+            <span class="giac-code">GISF</span>
+            <h3 class="giac-name">GIAC Information Security Fundamentals</h3>
+            <p class="giac-focus">Applied cryptography, risk governance, security policy architecture, and core assurance principles.</p>
+          </div>
+
+          <div class="giac-card">
+            <span class="giac-code">GFACT</span>
+            <h3 class="giac-name">GIAC Foundational Cybersecurity Technologies</h3>
+            <p class="giac-focus">Linux and Windows OS internals, TCP/IP networking, virtualization, and binary execution fundamentals.</p>
+          </div>
+        </div>
+
+        <!-- Academic & Service Pedigree -->
+        <div class="pedigree-grid">
+          <div class="pedigree-card">
+            <div class="pedigree-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+            </div>
+            <div>
+              <h3 class="pedigree-title">SANS Technology Institute</h3>
+              <p class="pedigree-sub">Bachelor of Science in Applied Cybersecurity (BACS) Candidate &amp; SANS Internet Storm Center (ISC) Practicum Intern.</p>
+            </div>
+          </div>
+
+          <div class="pedigree-card">
+            <div class="pedigree-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            </div>
+            <div>
+              <h3 class="pedigree-title">Associate of Science in Information Technology</h3>
+              <p class="pedigree-sub">Foundational systems administration, enterprise networking, and database engineering.</p>
+            </div>
+          </div>
+
+          <div class="pedigree-card">
+            <div class="pedigree-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <div>
+              <h3 class="pedigree-title">U.S. Army &amp; U.S. Air Force Veteran</h3>
+              <p class="pedigree-sub">Honorably served during Operation Noble Eagle, bringing mission-critical discipline and operational readiness to cyber defense.</p>
+            </div>
+          </div>
+
+          <div class="pedigree-card">
+            <div class="pedigree-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+            </div>
+            <div>
+              <h3 class="pedigree-title">Licensed Practical Nurse (LPN)</h3>
+              <p class="pedigree-sub">18+ years of clinical operations in high-accountability healthcare environments &mdash; deep domain insight for Healthcare CISOs &amp; HIPAA/clinical resilience.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         CONNECT & SPONSORSHIP
+         ====================================================================== -->
+    <section id="connect" class="section">
+      <div class="container">
+        <div class="connect-box">
+          <div class="connect-grid">
+            <div>
+              <div class="section-kicker">// 04. COLLABORATE &amp; SPONSOR</div>
+              <h2 class="section-title" style="margin-bottom: 0.85rem;">Engage &amp; Connect</h2>
+              <p class="section-desc">
+                Open to connecting with Healthcare CISOs, federal/SDVOSB partners, threat intelligence teams, and security engineering leaders in the Albany Capital Region and nationwide.
+              </p>
+
+              <!-- One-click copy handle widget -->
+              <div class="copy-widget">
+                <span class="copy-label">GITHUB / LINKEDIN HANDLE:</span>
+                <span class="copy-value" id="handleText">Frank-Igbokwe</span>
+                <button type="button" class="copy-btn" id="copyHandleBtn">Copy Handle</button>
+              </div>
+            </div>
+
+            <div class="connect-links">
+              <a href="https://github.com/Frank-Igbokwe" target="_blank" rel="noopener noreferrer" class="social-tile">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent-cyan); flex-shrink: 0;"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.05 11.05 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.8-.01 3.18 0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+                <span>GitHub Profile</span>
+              </a>
+
+              <a href="https://isc.sans.edu/diary/33306" target="_blank" rel="noopener noreferrer" class="social-tile">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-emerald); flex-shrink: 0;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                <span>SANS ISC Diary #33306</span>
+              </a>
+
+              <a href="https://github.com/sponsors/Frank-Igbokwe" target="_blank" rel="noopener noreferrer" class="social-tile">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #f472b6; flex-shrink: 0;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                <span>GitHub Sponsors</span>
+              </a>
+
+              <a href="https://buymeacoffee.com/Frank-Igbokwe" target="_blank" rel="noopener noreferrer" class="social-tile">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-amber); flex-shrink: 0;"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                <span>Buy Me a Coffee</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Frank N. Igbokwe &bull; Albany Capital Region, NY &bull; Hosted on GitHub Pages</p>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       ARCHITECTURE PREVIEW MODAL
+       ======================================================================== -->
+  <div class="modal-backdrop" id="archModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <div class="section-kicker" style="margin-bottom: 0.2rem;">SYSTEM ARCHITECTURE</div>
+          <h3 id="modalTitle" style="font-size: 1.25rem; font-weight: 700;">Honeypot-Omaha MSSP Pipeline</h3>
+        </div>
+        <button type="button" class="modal-close" id="closeArchModalBtn">ESC / Close</button>
+      </div>
+      <p style="font-size: 0.92rem; color: var(--text-secondary);">
+        End-to-end telemetry ingestion, behavioral analytics, and automated threat intelligence dissemination pipeline:
+      </p>
+      <ul class="arch-list">
+        <li><strong>01. Sensor Ingestion:</strong> Distributed AWS EC2 DShield &amp; Cowrie SSH/Telnet honeypot collectors streaming real-time attacker sessions and payload captures.</li>
+        <li><strong>02. Persistence &amp; API Layer:</strong> Dual-engine PostgreSQL &amp; SQLite WAL storage paired with a FastAPI multi-tenant service portal for tenant isolation.</li>
+        <li><strong>03. UEBA &amp; Packet Forensics:</strong> Scikit-Learn Isolation Forest anomaly scoring combined with automated PCAP session reconstruction.</li>
+        <li><strong>04. Command &amp; SOAR Dissemination:</strong> Four-display PyQt6 SOC workstation GUI alongside automated STIX 2.1, SIEM CEF, and SOAR webhook exports.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       CLIPBOARD FEEDBACK TOAST
+       ======================================================================== -->
+  <div class="toast" id="toastNotification" role="status" aria-live="polite">
+    <span class="brand-dot" aria-hidden="true"></span>
+    <span id="toastMessage">Copied "Frank-Igbokwe" to clipboard</span>
+  </div>
+
+  <!-- ========================================================================
+       INTERACTIVE VANILLA JAVASCRIPT
+       ======================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. Mobile Navigation Toggle
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileNav = document.getElementById('mobileNav');
+
+      if (mobileMenuBtn && mobileNav) {
+        mobileMenuBtn.addEventListener('click', function () {
+          const isOpen = mobileNav.classList.toggle('open');
+          mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        mobileNav.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', function () {
+            mobileNav.classList.remove('open');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      // 2. Project Category Filtering
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const projectCards = document.querySelectorAll('#projectsGrid .card');
+
+      filterButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const selected = btn.getAttribute('data-filter');
+
+          filterButtons.forEach(function (b) {
+            b.classList.remove('active');
+          });
+          btn.classList.add('active');
+
+          projectCards.forEach(function (card) {
+            const category = card.getAttribute('data-category');
+            if (selected === 'all' || category === selected) {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+        });
+      });
+
+      // 3. Architecture Preview Modal
+      const archModal = document.getElementById('archModal');
+      const openArchModalBtn = document.getElementById('openArchModalBtn');
+      const closeArchModalBtn = document.getElementById('closeArchModalBtn');
+
+      function closeModal() {
+        if (archModal) {
+          archModal.classList.remove('open');
+        }
+      }
+
+      if (openArchModalBtn && archModal) {
+        openArchModalBtn.addEventListener('click', function () {
+          archModal.classList.add('open');
+        });
+      }
+
+      if (closeArchModalBtn) {
+        closeArchModalBtn.addEventListener('click', closeModal);
+      }
+
+      if (archModal) {
+        archModal.addEventListener('click', function (e) {
+          if (e.target === archModal) {
+            closeModal();
+          }
+        });
+      }
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeModal();
+        }
+      });
+
+      // 4. Copy Handle to Clipboard with Toast Feedback
+      const copyHandleBtn = document.getElementById('copyHandleBtn');
+      const handleText = document.getElementById('handleText');
+      const toast = document.getElementById('toastNotification');
+      const toastMessage = document.getElementById('toastMessage');
+      let toastTimer = null;
+
+      function showToast(text) {
+        if (!toast || !toastMessage) return;
+        toastMessage.textContent = text;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.remove('show');
+        }, 2600);
+      }
+
+      if (copyHandleBtn && handleText) {
+        copyHandleBtn.addEventListener('click', function () {
+          const textToCopy = handleText.textContent.trim();
+          const tempInput = document.createElement('textarea');
+          tempInput.value = textToCopy;
+          tempInput.setAttribute('readonly', '');
+          tempInput.style.position = 'absolute';
+          tempInput.style.left = '-9999px';
+          document.body.appendChild(tempInput);
+          tempInput.select();
+
+          try {
+            document.execCommand('copy');
+            showToast('Copied "' + textToCopy + '" to clipboard');
+          } catch (err) {
+            showToast('Handle: ' + textToCopy);
+          }
+
+          document.body.removeChild(tempInput);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
