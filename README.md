@@ -1,54 +1,44 @@
 
-# Cybersecurity Portfolio & CTF Journey
 
-Welcome to my professional cybersecurity portfolio! As an IT professional, U.S. Military Veteran, Licensed Practical Nurse (18+ years), and Applied Cybersecurity (BACS) student at the SANS Technology Institute, this repository serves as my digital trophy shelf[cite: 3.2, 3.3]. It documents my practical journey through Capture the Flag (CTF) competitions, hands-on threat detection, and continuous technical growth.
+# Frank N. Igbokwe — Applied Cybersecurity & Threat Intelligence Portfolio
 
----
+[![Live Portfolio](https://img.shields.io/badge/Live_Site-GitHub_Pages-0ea5e9?style=for-the-badge&logo=github)](https://frank-igbokwe.github.io/cybersecurity-portfolio/)
+[![SANS ISC Diary](https://img.shields.io/badge/SANS_ISC-Diary_%2333306-10b981?style=for-the-badge)](https://isc.sans.edu/diary/33306)
+[![GIAC Certified](https://img.shields.io/badge/GIAC-7x_Certified-38bdf8?style=for-the-badge)](https://github.com/Frank-Igbokwe)
+[![Sponsor](https://img.shields.io/badge/GitHub-Sponsors-f472b6?style=for-the-badge&logo=githubsponsors)](https://github.com/sponsors/Frank-Igbokwe)
 
-## 🚀 About Me
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/your-profile)
+> **Live Interactive Portfolio:** [https://frank-igbokwe.github.io/cybersecurity-portfolio/](https://frank-igbokwe.github.io/cybersecurity-portfolio/)
 
-* **Background:** Blending over 18 years of clinical problem-solving in healthcare as an LPN, military service (U.S. Army & Air Force / Operation Noble Eagle), and a strong technical foundation in Information Technology (AS-IT, SANS BACS program, multiple GIAC certifications including GCPN)[cite: 3.2, 3.3].
-* **Core Focus:** Cyber Threat Intelligence (CTI), cryptanalysis, log automation pipelines, and defensive network security.
-* **Professional Goal:** Building resilient security infrastructure and transitioning technical defense capabilities to protect critical systems.
-
----
-
-## 🛡️ Certifications & Professional Credentials
-
-[![GFACT](https://img.shields.io/badge/GIAC-GFACT-blue?style=for-the-badge&logo=credly)](https://www.credly.com/)
-[![GISF](https://img.shields.io/badge/GIAC-GISF-blue?style=for-the-badge&logo=credly)](https://www.credly.com/)
-[![GSEC](https://img.shields.io/badge/GIAC-GSEC-blue?style=for-the-badge&logo=credly)](https://www.credly.com/)
-[![GCIH](https://img.shields.io/badge/GIAC-GCIH-blue?style=for-the-badge&logo=credly)](https://www.credly.com/)
-[![GPYC](https://img.shields.io/badge/GIAC-GPYC-blue?style=for-the-badge&logo=credly)](https://www.credly.com/)
-[![GCIA](https://img.shields.io/badge/GIAC-GCIA-blue?style=for-the-badge&logo=credly)](https://www.credly.com/)
-[![GCPN](https://img.shields.io/badge/GIAC-GCPN-%230077B5?style=for-the-badge&logo=credly)](https://www.credly.com/)
-[![LPN](https://img.shields.io/badge/Licensed-Practical%20Nurse-%232E8B57?style=for-the-badge&logo=gnomedebug)](https://www.credly.com/)
-
-
-
-## 🏆 CTF Participation & Experience
-
-Participating in Capture the Flag (CTF) challenges has fundamentally transformed how I approach complex problem-solving. Moving away from clean, curated classroom scenarios into chaotic, multi-layered challenges taught me the importance of analytical patience, systematic tool development, and rigorous data validation.
-
-### Key Highlights & Technical Methodologies:
-1. **Classical Cryptanalysis & Polyalphabetic Ciphers:** 
-   * Tackled complex cryptographic challenges by moving past raw statistical assumptions. 
-   * Developed custom Python automation scripts (`decrypt.py`, `solve_cipher.py`, `solve_vigenere.py`) within my local development environment (`~/Projects/CTF`) to evaluate Index of Coincidence (IC) metrics and perform columnar frequency distribution.
-   * Mastered the critical lesson that *mathematical self-consistency does not guarantee semantic correctness*, learning to guard against false-positive "ghost keys" via qualitative semantic validation.
-2. **Workflow Automation & Version Control:** 
-   * Maintained strict code reproducibility using Git version control for all analytical scripts, ensuring clean audit trails and professional engineering standards.
+Applied Cybersecurity Engineer, Cloud Penetration Tester, Threat Intelligence & MSSP Architect, SANS Internet Storm Center (ISC) Intern & Co-Author, and U.S. Army & Air Force Veteran (Operation Noble Eagle).
 
 ---
 
-## 📊 Performance & Score Reports
-*To comply with NCL policies regarding challenge write-ups, detailed puzzle solutions are kept private. However, my official performance metrics and score reports can be verified via the public links below:*
+## Featured Systems & Research
 
-* **NCL Individual Game Score Report:** [Insert Public Share Link Here]
-* **NCL Team Game Score Report:** [Insert Public Share Link Here]
+* **`Honeypot-Omaha` Enterprise Threat Intelligence & MSSP Platform:** Multi-tenant detection and response pipeline ingesting AWS EC2 DShield and Cowrie SSH/Telnet telemetry into PostgreSQL / SQLite WAL, featuring a four-display PyQt6 command dashboard, FastAPI portal, Scikit-Learn Isolation Forest UEBA anomaly detection, PCAP reconstruction, and SOAR / STIX 2.1 / SIEM CEF exports.
+* **[`honeypot-omaha-batch` (`batch.py`)](https://github.com/Frank-Igbokwe/honeypot-omaha-batch):** Open-source (BSL-1.1) automated log parsing and multi-source OSINT enrichment pipeline (`ip-api.com`, `cve.org`, VirusTotal, Shodan).
+* **RIPLE Incident Lifecycle Taxonomy:** Structured post-compromise methodology (*Reconnaissance, Initial exploitation, Persistence-Privilege escalation, Lateral movement, Exfiltration of data*) bridging SOC triage and CISO risk reporting.
+* **[SANS ISC Guest Diary #33306](https://isc.sans.edu/diary/33306):** Co-authored with Dr. Johannes Ullrich on empirical honeypot attack patterns and automated telemetry triage.
+* **National Cyber League (Fall 2026):** Team *SANS.edu Ctrl+Alt+Defeat* — 223rd / 3,034 teams (93rd percentile overall; 99th percentile Password Cracking, 98th percentile Log & Network Traffic Analysis).
 
 ---
 
-## 🛠️ Featured Projects & Repositories
-* **[Honeypot-Omaha & batch.py](https://github.com/Frank-Igbokwe/honeypot-omaha-batch):** A Python automated log processing and telemetry correlation pipeline for Cowrie honeypots and DShield sensors, published under the Business Source License 1.1[cite: 3.2, 3.3].
+## Verified Credentials
 
+* **7x GIAC Certified:** `GCPN` &bull; `GCIA` &bull; `GCIH` &bull; `GPYC` &bull; `GSEC` &bull; `GISF` &bull; `GFACT`
+* **Education:** B.S. in Applied Cybersecurity (Candidate), SANS Technology Institute &bull; A.S. in Information Technology
+* **Service & Healthcare:** U.S. Army & U.S. Air Force Veteran (Operation Noble Eagle) &bull; Licensed Practical Nurse (LPN, 18+ years clinical operations)
+
+---
+
+## Local Preview & Deployment
+
+No build step or external Node dependencies are required—`index.html` is a self-contained single-page application.
+
+```bash
+# Clone the repository
+git clone [https://github.com/Frank-Igbokwe/cybersecurity-portfolio.git](https://github.com/Frank-Igbokwe/cybersecurity-portfolio.git)
+cd cybersecurity-portfolio
+
+# Serve locally on port 8080
+python3 -m http.server 8080
