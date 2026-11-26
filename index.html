@@ -1324,6 +1324,212 @@
       </div>
     </section>
 
+
+
+
+<!-- Resume entry -->
+<div class="resume-writeup-item">
+  <h4>CTF Write-Up: Port Knocking Challenge (6/6 Flags)</h4>
+  <p>
+    Packet analysis and Scapy packet-crafting write-up covering ICMP Type 15/16
+    flag payloads, UDP port knocks (75, 31, 31337, echo/chargen), and
+    <code>AsyncSniffer</code> response capture.
+  </p>
+  <div class="writeup-actions">
+    <button
+      type="button"
+      class="btn-preview-pdf"
+      data-pdf-src="./assets/CTF_Write-Up_Port_Knocking_Challenge.pdf"
+      data-pdf-title="CTF Write-Up: Port Knocking Challenge"
+    >
+      Preview PDF
+    </button>
+    <a
+      href="./assets/CTF_Write-Up_Port_Knocking_Challenge.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Open / Download PDF
+    </a>
+  </div>
+</div>
+
+<!-- Modal viewer -->
+<div
+  id="pdfModal"
+  class="pdf-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="pdfModalTitle"
+  hidden
+>
+  <div class="pdf-modal-backdrop" data-close-pdf></div>
+  <div class="pdf-modal-dialog">
+    <div class="pdf-modal-header">
+      <h3 id="pdfModalTitle">PDF Preview</h3>
+      <div class="pdf-modal-controls">
+        <a
+          id="pdfModalExternal"
+          href="./assets/CTF_Write-Up_Port_Knocking_Challenge.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          New Tab
+        </a>
+        <button
+          type="button"
+          id="closePdfModal"
+          aria-label="Close PDF preview"
+        >
+          &times;
+        </button>
+      </div>
+    </div>
+    <div class="pdf-modal-body">
+      <iframe
+        id="pdfFrame"
+        title="CTF Write-Up: Port Knocking Challenge PDF Viewer"
+        loading="lazy"
+      ></iframe>
+    </div>
+  </div>
+</div>
+
+
+    <!-- =======================
+          CSS 
+        ======================= -->
+
+
+    .pdf-modal[hidden] {
+  display: none;
+}
+
+.pdf-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.pdf-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.pdf-modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 960px);
+  height: 85vh;
+  background: #111827;
+  color: #f9fafb;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+.pdf-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.pdf-modal-header h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.pdf-modal-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pdf-modal-body {
+  flex: 1;
+  min-height: 0;
+}
+
+.pdf-modal-body iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #ffffff;
+}
+
+
+    <!-- =============
+    Javascript
+    =============== -->
+
+    (() => {
+  const modal = document.getElementById("pdfModal");
+  const frame = document.getElementById("pdfFrame");
+  const titleEl = document.getElementById("pdfModalTitle");
+  const externalLink = document.getElementById("pdfModalExternal");
+  const closeBtn = document.getElementById("closePdfModal");
+
+  if (!modal || !frame || !closeBtn) return;
+
+  let lastFocusedElement = null;
+
+  function openPdfModal(src, title) {
+    lastFocusedElement = document.activeElement;
+    frame.src = src;
+    if (titleEl && title) titleEl.textContent = title;
+    if (externalLink) externalLink.href = src;
+
+    modal.hidden = false;
+    document.body.style.overflow = "hidden";
+    closeBtn.focus();
+  }
+
+  function closePdfModal() {
+    modal.hidden = true;
+    document.body.style.overflow = "";
+    frame.src = "";
+
+    if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+      lastFocusedElement.focus();
+      lastFocusedElement = null;
+    }
+  }
+
+  document.addEventListener("click", (event) => {
+    const trigger = event.target.closest("[data-pdf-src]");
+    if (trigger) {
+      event.preventDefault();
+      openPdfModal(
+        trigger.getAttribute("data-pdf-src"),
+        trigger.getAttribute("data-pdf-title")
+      );
+      return;
+    }
+
+    if (event.target.matches("[data-close-pdf]")) {
+      closePdfModal();
+    }
+  });
+
+  closeBtn.addEventListener("click", closePdfModal);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !modal.hidden) {
+      closePdfModal();
+    }
+  });
+})();
+    
     <!-- ======================================================================
          PUBLISHED RESEARCH & COMPETITIVE BENCHMARKS
          ====================================================================== -->
