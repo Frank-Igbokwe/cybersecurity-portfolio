@@ -1740,4 +1740,721 @@
             <li><strong>Artifact:</strong> 7-page technical PDF write-up</li>
           </ul>
 
-          <div class="resume
+          <div class="resume-card-actions">
+            <button
+              type="button"
+              class="btn-preview-pdf"
+              data-pdf-src="./CTF_Write-Up_Port_Knocking_Challenge.pdf"
+              data-pdf-title="CTF Write-Up: Port Knocking Challenge (6/6 Flags)"
+            >
+              Preview Write-Up
+            </button>
+            <a
+              href="./CTF_Write-Up_Port_Knocking_Challenge.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Download PDF
+            </a>
+          </div>
+        </article>
+
+        <!-- Additional CTF Write-Ups & Labs Shelf -->
+        <div class="writeups-shelf" aria-label="Additional CTF Write-Ups and Labs">
+          <div class="writeups-shelf-header">
+            <span class="mono" style="font-size: 0.8rem; color: var(--accent-emerald);">// CTF WRITE-UPS &amp; LAB ARTIFACTS</span>
+          </div>
+          <div class="writeups-list">
+            <div class="writeup-row">
+              <div>
+                <strong>Port Knocking Challenge (6/6 Flags)</strong>
+                <div class="mono" style="font-size: 0.78rem; color: var(--text-secondary);">Scapy &bull; TShark/Wireshark &bull; ICMP Type 15/16 &bull; UDP Knocks</div>
+              </div>
+              <div class="resume-card-actions" style="padding-top: 0;">
+                <button type="button" class="btn-preview-pdf" data-pdf-src="./CTF_Write-Up_Port_Knocking_Challenge.pdf" data-pdf-title="CTF Write-Up: Port Knocking Challenge (6/6 Flags)">Preview PDF</button>
+                <a href="./CTF_Write-Up_Port_Knocking_Challenge.pdf" target="_blank" rel="noopener noreferrer">Open Tab &nearr;</a>
+              </div>
+            </div>
+
+            <div class="writeup-row">
+              <div class="writeup-row-left">
+                <img
+                  src="./badges/badge1.png"
+                  alt="NSA Codebreaker Challenge 2026 Task 1 Completed Badge"
+                  class="badge-thumb"
+                />
+                <div>
+                  <strong>NSA Codebreaker Challenge &mdash; Syslog &amp; Memory Forensics (Task 1 Badge)</strong>
+                  <div class="mono" style="font-size: 0.78rem; color: var(--text-secondary);">Linux Syslog Investigation &bull; Memory Dump &amp; SHA-1 Checksum Forensics &bull; 2026 NSA Badge Earned</div>
+                </div>
+              </div>
+              <span class="mono" style="font-size: 0.76rem; color: var(--accent-emerald);">NSA BADGE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sanitized STIX 2.1 / batch.py Sample Panel -->
+        <div class="sample-panel" aria-label="Sanitized STIX 2.1 Sample">
+          <div class="sample-panel-header">
+            <span class="mono" style="font-size: 0.8rem; color: var(--accent-cyan);">
+              SANITIZED SAMPLE &mdash; STIX 2.1 / <code>batch.py</code> CORRELATION OUTPUT
+            </span>
+            <button type="button" class="copy-btn" id="copySampleJsonBtn" style="margin-left: 0;">
+              Copy Sample JSON
+            </button>
+          </div>
+          <pre class="sample-code mono" id="sampleStixJson">{
+  "type": "bundle",
+  "id": "bundle--8f4c2a10-7b6e-4c9d-9a21-3e5f6a7b8c9d",
+  "objects": [
+    {
+      "type": "ipv4-addr",
+      "id": "ipv4-addr--198.51.100.42",
+      "value": "198.51.100.42",
+      "x_honeypot_omaha_sensor": "aws-ec2-cowrie-ssh"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--d1e2f3a4-5b6c-7d8e-9f0a-1b2c3d4e5f6a",
+      "name": "Repeated SSH Brute-Force & Credential Probe (Sanitized Sample)",
+      "pattern": "[ipv4-addr:value = '198.51.100.42']",
+      "pattern_type": "stix",
+      "confidence": 85
+    }
+  ]
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         PUBLISHED RESEARCH & COMPETITIVE BENCHMARKS
+         ====================================================================== -->
+    <section id="research" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">// 02. PUBLICATIONS &amp; COMPETITIVE BENCHMARKS</div>
+            <h2 class="section-title">Published Research &amp; Cyber Exercises</h2>
+          </div>
+          <p class="section-desc">
+            Peer-reviewed Internet Storm Center telemetry analysis and national-level adversarial capture-the-flag operations.
+          </p>
+        </div>
+
+        <div class="research-grid">
+          <!-- SANS ISC Diary -->
+          <article class="research-card">
+            <div>
+              <div class="research-meta">SANS INTERNET STORM CENTER &bull; DIARY #33306</div>
+              <h3 class="research-title">SANS ISC Guest Diary Co-Author</h3>
+              <p class="research-text">
+                Co-authored with Dr. Johannes Ullrich, detailing empirical attack patterns captured by <code>Honeypot-Omaha</code> sensors and automated multi-source telemetry triage using <code>batch.py</code>.
+              </p>
+            </div>
+            <div>
+              <a href="https://isc.sans.edu/diary/33306" target="_blank" rel="noopener noreferrer" class="card-link">
+                Read Full SANS ISC Diary #33306 &nearr;
+              </a>
+            </div>
+          </article>
+
+          <!-- National Cyber League -->
+          <article class="research-card">
+            <div>
+              <div class="research-meta">NATIONAL CYBER LEAGUE &bull; FALL 2026 SEASON</div>
+              <h3 class="research-title">Team SANS.edu Ctrl+Alt+Defeat &amp; Individual Game</h3>
+              <p class="research-text">
+                <strong>Team:</strong> 223rd of 3,034 teams (93rd percentile, 86% accuracy).<br />
+                <strong>Individual:</strong> 819th of 5,961 players (87th percentile, 1,930 pts).
+              </p>
+              <div class="stat-pills">
+                <span class="stat-pill">99th %ile Password Cracking</span>
+                <span class="stat-pill">98th %ile Log Analysis</span>
+                <span class="stat-pill">98th %ile Network Traffic Analysis</span>
+              </div>
+            </div>
+            <div class="mono" style="font-size: 0.78rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.25rem;">
+              <a href="https://cyberskyline.com/report" target="_blank" rel="noopener noreferrer" class="card-link">
+                VERIFY REPORT ON CYBER SKYLINE &nearr;
+              </a>
+              <span>REPORT ID: VWKN7BLDBFMP</span>
+            </div>
+          </article>
+
+          <!-- NSA Codebreaker Challenge -->
+          <article class="research-card">
+            <div>
+              <div class="research-card-top">
+                <div>
+                  <div class="research-meta">NSA CODEBREAKER CHALLENGE &bull; 2026 &bull; TASK 1 BADGE</div>
+                  <h3 class="research-title">Host Forensics, Memory Analysis &amp; NSA Badge</h3>
+                </div>
+                <img
+                  src="./badges/badge1.png"
+                  alt="NSA Codebreaker Challenge 2026 Task 1 Completed Badge"
+                  class="badge-thumb"
+                />
+              </div>
+              <p class="research-text">
+                Earned an NSA challenge badge while conducting compromised Linux syslog process investigation and workstation memory dump forensics (including SHA-1 checksum verification and hidden-artifact analysis).
+              </p>
+            </div>
+            <div class="mono" style="font-size: 0.78rem; color: var(--text-muted);">
+              NSA BADGE &bull; LINUX SYSLOG &amp; MEMORY DFIR
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         CERTIFICATIONS & SERVICE PEDIGREE
+         ====================================================================== -->
+    <section id="credentials" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">// 03. VERIFIED CREDENTIALS &amp; PEDIGREE</div>
+            <h2 class="section-title">7x GIAC Certifications &amp; Operational Background</h2>
+          </div>
+          <p class="section-desc">
+            Hands-on technical validation spanning cloud penetration testing, packet-level intrusion analysis, incident handling, and security automation.
+          </p>
+        </div>
+
+        <!-- 7 GIAC Certifications Grid -->
+        <div class="giac-grid">
+          <a href="https://www.credly.com/badges/b63366ec-ed21-4264-bf55-441d7bf7b0de/public_url" target="_blank" rel="noopener noreferrer" class="giac-card">
+            <span class="giac-code">GCPN</span>
+            <h3 class="giac-name">GIAC Cloud Penetration Tester</h3>
+            <p class="giac-focus">AWS, Azure, and GCP offensive security assessment, IAM privilege escalation, and cloud exploitation. <span class="mono" style="color: var(--accent-cyan);">Verify on Credly &nearr;</span></p>
+          </a>
+
+          <a href="https://www.credly.com/badges/aa931147-fc99-406e-bdb4-665d493264d8/public_url" target="_blank" rel="noopener noreferrer" class="giac-card">
+            <span class="giac-code">GCIA</span>
+            <h3 class="giac-name">GIAC Certified Intrusion Analyst</h3>
+            <p class="giac-focus">Packet-level inspection, Zeek, Wireshark, protocol behavioral analysis, and network anomaly hunting. <span class="mono" style="color: var(--accent-cyan);">Verify on Credly &nearr;</span></p>
+          </a>
+
+          <a href="https://www.credly.com/badges/5182f852-e126-46ab-bf1b-3b299b6bb0c5/public_url" target="_blank" rel="noopener noreferrer" class="giac-card">
+            <span class="giac-code">GCIH</span>
+            <h3 class="giac-name">GIAC Certified Incident Handler</h3>
+            <p class="giac-focus">End-to-end incident response, adversary TTP detection, eradication, and containment workflows. <span class="mono" style="color: var(--accent-cyan);">Verify on Credly &nearr;</span></p>
+          </a>
+
+          <a href="https://www.credly.com/badges/a94939e6-48eb-4546-bff7-1fb21b4677b0/public_url" target="_blank" rel="noopener noreferrer" class="giac-card">
+            <span class="giac-code">GPYC</span>
+            <h3 class="giac-name">GIAC Python Coder</h3>
+            <p class="giac-focus">Security automation, custom telemetry parsers, API threat enrichment, and defensive/offensive tooling. <span class="mono" style="color: var(--accent-cyan);">Verify on Credly &nearr;</span></p>
+          </a>
+
+          <a href="https://www.credly.com/badges/bc4a6089-353e-4bc9-842b-4ed8abb40d67/public_url" target="_blank" rel="noopener noreferrer" class="giac-card">
+            <span class="giac-code">GSEC</span>
+            <h3 class="giac-name">GIAC Security Essentials</h3>
+            <p class="giac-focus">Enterprise defense-in-depth architecture, endpoint hardening, access control, and cryptographic implementation. <span class="mono" style="color: var(--accent-cyan);">Verify on Credly &nearr;</span></p>
+          </a>
+
+          <a href="https://www.credly.com/badges/01b11cec-00b8-4991-a8af-07c29cb14ac2/public_url" target="_blank" rel="noopener noreferrer" class="giac-card">
+            <span class="giac-code">GISF</span>
+            <h3 class="giac-name">GIAC Information Security Fundamentals</h3>
+            <p class="giac-focus">Applied cryptography, risk governance, security policy architecture, and core assurance principles. <span class="mono" style="color: var(--accent-cyan);">Verify on Credly &nearr;</span></p>
+          </a>
+
+          <a href="https://www.credly.com/badges/34006ab1-9390-479e-a805-02760c741873/public_url" target="_blank" rel="noopener noreferrer" class="giac-card">
+            <span class="giac-code">GFACT</span>
+            <h3 class="giac-name">GIAC Foundational Cybersecurity Technologies</h3>
+            <p class="giac-focus">Linux and Windows OS internals, TCP/IP networking, virtualization, and binary execution fundamentals. <span class="mono" style="color: var(--accent-cyan);">Verify on Credly &nearr;</span></p>
+          </a>
+        </div>
+
+        <!-- Academic & Service Pedigree -->
+        <div class="pedigree-grid">
+          <div class="pedigree-card">
+            <div class="pedigree-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+            </div>
+            <div>
+              <h3 class="pedigree-title">SANS Technology Institute</h3>
+              <p class="pedigree-sub">Bachelor of Science in Applied Cybersecurity (BACS) Candidate &amp; SANS Internet Storm Center (ISC) Practicum Intern.</p>
+            </div>
+          </div>
+
+          <div class="pedigree-card">
+            <div class="pedigree-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            </div>
+            <div>
+              <h3 class="pedigree-title">Associate of Science in Information Technology</h3>
+              <p class="pedigree-sub">Foundational systems administration, enterprise networking, and database engineering.</p>
+            </div>
+          </div>
+
+          <div class="pedigree-card">
+            <div class="pedigree-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <div>
+              <h3 class="pedigree-title">U.S. Army &amp; U.S. Air Force Veteran</h3>
+              <p class="pedigree-sub">Honorably served during Operation Noble Eagle, bringing mission-critical discipline and operational readiness to cyber defense.</p>
+            </div>
+          </div>
+
+          <div class="pedigree-card">
+            <div class="pedigree-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+            </div>
+            <div>
+              <h3 class="pedigree-title">Licensed Practical Nurse (LPN)</h3>
+              <p class="pedigree-sub">18+ years of clinical operations in high-accountability healthcare environments &mdash; deep domain insight for Healthcare CISOs &amp; HIPAA/clinical resilience.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         CONNECT & SPONSORSHIP
+         ====================================================================== -->
+    <section id="connect" class="section">
+      <div class="container">
+        <div class="connect-box">
+          <div class="connect-grid">
+            <div>
+              <div class="section-kicker">// 04. COLLABORATE &amp; SPONSOR</div>
+              <h2 class="section-title" style="margin-bottom: 0.85rem;">Engage &amp; Connect</h2>
+              <p class="section-desc">
+                Open to connecting with Healthcare CISOs, federal/SDVOSB partners, threat intelligence teams, and security engineering leaders in the Albany Capital Region and nationwide.
+              </p>
+
+              <!-- One-click copy widgets for GitHub & LinkedIn -->
+              <div class="copy-split">
+                <div class="copy-widget">
+                  <span class="copy-label">GITHUB:</span>
+                  <span class="copy-value" id="githubHandleVal">Frank-Igbokwe</span>
+                  <button type="button" class="copy-btn" data-copy-target="githubHandleVal">Copy</button>
+                </div>
+
+                <div class="copy-widget">
+                  <span class="copy-label">LINKEDIN:</span>
+                  <span class="copy-value" id="linkedinUrlVal">https://www.linkedin.com/in/frankigbokwe/</span>
+                  <button type="button" class="copy-btn" data-copy-target="linkedinUrlVal">Copy</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="connect-links">
+              <a href="https://github.com/Frank-Igbokwe" target="_blank" rel="noopener noreferrer" class="social-tile">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent-cyan); flex-shrink: 0;"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.05 11.05 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.8-.01 3.18 0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+                <span>GitHub Profile</span>
+              </a>
+
+              <a href="https://isc.sans.edu/diary/33306" target="_blank" rel="noopener noreferrer" class="social-tile">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-emerald); flex-shrink: 0;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                <span>SANS ISC Diary #33306</span>
+              </a>
+
+              <a href="https://www.youtube.com/channel/UCFf9YseKE2HvkzCkWM-rhVA" target="_blank" rel="noopener noreferrer" class="social-tile wide">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent-red); flex-shrink: 0;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                <span>YouTube Demos &amp; GUI Walkthroughs</span>
+              </a>
+
+              <a href="https://github.com/sponsors/Frank-Igbokwe" target="_blank" rel="noopener noreferrer" class="social-tile">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #f472b6; flex-shrink: 0;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                <span>GitHub Sponsors</span>
+              </a>
+
+              <a href="https://buymeacoffee.com/Frank-Igbokwe" target="_blank" rel="noopener noreferrer" class="social-tile">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-amber); flex-shrink: 0;"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                <span>Buy Me a Coffee</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Frank N. Igbokwe &bull; NY &bull; Hosted on GitHub Pages</p>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       MODAL: HONEYPOT-OMAHA GUI WALKTHROUGH VIDEO & ARCHITECTURE
+       ======================================================================== -->
+  <div class="modal-backdrop" id="archModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <div class="section-kicker" style="margin-bottom: 0.2rem;">LIVE GUI DEMO &amp; SYSTEM ARCHITECTURE</div>
+          <h3 id="modalTitle" style="font-size: 1.25rem; font-weight: 700;">Honeypot-Omaha MSSP Platform</h3>
+        </div>
+        <button type="button" class="modal-close" id="closeArchModalBtn">ESC / Close</button>
+      </div>
+
+      <!-- Responsive 16:9 Privacy-Enhanced YouTube Walkthrough Embed -->
+      <div class="video-frame">
+        <iframe
+          id="guiDemoIframe"
+          data-src="https://www.youtube-nocookie.com/embed/RS-rg8Daaps?rel=0"
+          src=""
+          title="Honeypot-Omaha Enterprise Threat Intelligence GUI Walkthrough"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="video-caption-bar">
+        <span>7-Minute Walkthrough: PyQt6 4-Display Dashboard, <code>batch.py</code> Enrichment &amp; STIX 2.1 / SOAR</span>
+        <a href="https://www.youtube.com/channel/UCFf9YseKE2HvkzCkWM-rhVA" target="_blank" rel="noopener noreferrer" class="card-link youtube">
+          More Demos on YouTube &nearr;
+        </a>
+      </div>
+
+      <p style="font-size: 0.92rem; color: var(--text-secondary);">
+        End-to-end telemetry ingestion, behavioral analytics, and automated threat intelligence dissemination pipeline:
+      </p>
+      <ul class="arch-list">
+        <li><strong>01. Sensor Ingestion:</strong> Distributed AWS EC2 DShield &amp; Cowrie SSH/Telnet honeypot collectors streaming real-time attacker sessions and payload captures.</li>
+        <li><strong>02. Persistence &amp; API Layer:</strong> Dual-engine PostgreSQL &amp; SQLite WAL storage paired with a FastAPI multi-tenant service portal for tenant isolation.</li>
+        <li><strong>03. UEBA &amp; Packet Forensics:</strong> Scikit-Learn Isolation Forest anomaly scoring combined with automated PCAP session reconstruction.</li>
+        <li><strong>04. Command &amp; SOAR Dissemination:</strong> Four-display PyQt6 SOC workstation GUI alongside automated STIX 2.1, SIEM CEF, and SOAR webhook exports.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL: PDF WRITE-UP VIEWER
+       ======================================================================== -->
+  <div
+    id="pdfModal"
+    class="pdf-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="pdfModalTitle"
+    hidden
+  >
+    <div class="pdf-modal-backdrop" data-close-pdf></div>
+    <div class="pdf-modal-dialog">
+      <div class="pdf-modal-header">
+        <h3 id="pdfModalTitle">PDF Preview</h3>
+        <div class="pdf-modal-controls">
+          <a
+            id="pdfModalExternal"
+            href="./CTF_Write-Up_Port_Knocking_Challenge.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open in Tab &nearr;
+          </a>
+          <button
+            type="button"
+            id="closePdfModal"
+            aria-label="Close PDF preview"
+          >
+            ESC / Close
+          </button>
+        </div>
+      </div>
+      <div class="pdf-modal-body">
+        <iframe
+          id="pdfFrame"
+          title="CTF Write-Up: Port Knocking Challenge PDF Viewer"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       CLIPBOARD FEEDBACK TOAST
+       ======================================================================== -->
+  <div class="toast" id="toastNotification" role="status" aria-live="polite">
+    <span class="brand-dot" aria-hidden="true"></span>
+    <span id="toastMessage">Copied "Frank-Igbokwe" to clipboard</span>
+  </div>
+
+  <!-- ========================================================================
+       INTERACTIVE VANILLA JAVASCRIPT
+       ======================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. Mobile Navigation Toggle
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileNav = document.getElementById('mobileNav');
+
+      if (mobileMenuBtn && mobileNav) {
+        mobileMenuBtn.addEventListener('click', function () {
+          const isOpen = mobileNav.classList.toggle('open');
+          mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        mobileNav.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', function () {
+            mobileNav.classList.remove('open');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      // 2. Project Category Filtering
+      const filterButtons = document.querySelectorAll('.filter-btn[data-filter]');
+      const projectCards = document.querySelectorAll('#projectsGrid .card');
+
+      filterButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const selected = btn.getAttribute('data-filter');
+
+          filterButtons.forEach(function (b) {
+            b.classList.remove('active');
+          });
+          btn.classList.add('active');
+
+          projectCards.forEach(function (card) {
+            const category = card.getAttribute('data-category');
+            if (selected === 'all' || category === selected) {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+        });
+      });
+
+      // 3. GUI Demo Video & Architecture Preview Modal
+      const archModal = document.getElementById('archModal');
+      const openArchModalBtn = document.getElementById('openArchModalBtn');
+      const closeArchModalBtn = document.getElementById('closeArchModalBtn');
+      const guiDemoIframe = document.getElementById('guiDemoIframe');
+
+      function openModal() {
+        if (!archModal) return;
+        if (guiDemoIframe) {
+          const embedSrc = guiDemoIframe.getAttribute('data-src');
+          if (embedSrc && guiDemoIframe.getAttribute('src') !== embedSrc) {
+            guiDemoIframe.setAttribute('src', embedSrc);
+          }
+        }
+        archModal.classList.add('open');
+      }
+
+      function closeModal() {
+        if (!archModal) return;
+        archModal.classList.remove('open');
+        if (guiDemoIframe) {
+          guiDemoIframe.setAttribute('src', '');
+        }
+      }
+
+      if (openArchModalBtn) {
+        openArchModalBtn.addEventListener('click', openModal);
+      }
+
+      if (closeArchModalBtn) {
+        closeArchModalBtn.addEventListener('click', closeModal);
+      }
+
+      if (archModal) {
+        archModal.addEventListener('click', function (e) {
+          if (e.target === archModal) {
+            closeModal();
+          }
+        });
+      }
+
+      // 4. PDF Write-Up Modal
+      const pdfModal = document.getElementById('pdfModal');
+      const pdfFrame = document.getElementById('pdfFrame');
+      const pdfModalTitle = document.getElementById('pdfModalTitle');
+      const pdfModalExternal = document.getElementById('pdfModalExternal');
+      const closePdfModalBtn = document.getElementById('closePdfModal');
+      let lastPdfTrigger = null;
+
+      function openPdfModal(src, title) {
+        if (!pdfModal || !pdfFrame || !src) return;
+        lastPdfTrigger = document.activeElement;
+        pdfFrame.setAttribute('src', src);
+        if (pdfModalTitle && title) pdfModalTitle.textContent = title;
+        if (pdfModalExternal) pdfModalExternal.setAttribute('href', src);
+        pdfModal.hidden = false;
+        document.body.style.overflow = 'hidden';
+        if (closePdfModalBtn) closePdfModalBtn.focus();
+      }
+
+      function closePdfModal() {
+        if (!pdfModal || pdfModal.hidden) return;
+        pdfModal.hidden = true;
+        document.body.style.overflow = '';
+        if (pdfFrame) pdfFrame.setAttribute('src', '');
+        if (lastPdfTrigger && typeof lastPdfTrigger.focus === 'function') {
+          lastPdfTrigger.focus();
+          lastPdfTrigger = null;
+        }
+      }
+
+      document.addEventListener('click', function (e) {
+        const trigger = e.target.closest('[data-pdf-src]');
+        if (trigger) {
+          e.preventDefault();
+          openPdfModal(
+            trigger.getAttribute('data-pdf-src'),
+            trigger.getAttribute('data-pdf-title')
+          );
+          return;
+        }
+
+        if (e.target.matches('[data-close-pdf]')) {
+          closePdfModal();
+        }
+      });
+
+      if (closePdfModalBtn) {
+        closePdfModalBtn.addEventListener('click', closePdfModal);
+      }
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeModal();
+          closePdfModal();
+        }
+      });
+
+      // 5. Copy Handle to Clipboard with Toast Feedback
+      const toast = document.getElementById('toastNotification');
+      const toastMessage = document.getElementById('toastMessage');
+      let toastTimer = null;
+
+      function showToast(text) {
+        if (!toast || !toastMessage) return;
+        toastMessage.textContent = text;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.remove('show');
+        }, 2600);
+      }
+
+      function copyValue(textToCopy, label) {
+        if (!textToCopy) return;
+        const tempInput = document.createElement('textarea');
+        tempInput.value = textToCopy;
+        tempInput.setAttribute('readonly', '');
+        tempInput.style.position = 'absolute';
+        tempInput.style.left = '-9999px';
+        document.body.appendChild(tempInput);
+        tempInput.select();
+
+        try {
+          document.execCommand('copy');
+          showToast('Copied ' + (label ? label : '"' + textToCopy + '"') + ' to clipboard');
+        } catch (err) {
+          showToast('Value: ' + textToCopy);
+        }
+
+        document.body.removeChild(tempInput);
+      }
+
+      document.querySelectorAll('[data-copy-target]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const targetEl = document.getElementById(btn.getAttribute('data-copy-target'));
+          if (targetEl) {
+            copyValue(targetEl.textContent.trim(), '"' + targetEl.textContent.trim() + '"');
+          }
+        });
+      });
+
+      const copySampleJsonBtn = document.getElementById('copySampleJsonBtn');
+      const sampleStixJson = document.getElementById('sampleStixJson');
+      if (copySampleJsonBtn && sampleStixJson) {
+        copySampleJsonBtn.addEventListener('click', function () {
+          copyValue(sampleStixJson.textContent.trim(), 'sanitized STIX 2.1 JSON');
+        });
+      }
+
+      // 6. Role Focus Switcher & Print Resume Trigger
+      const roleButtons = document.querySelectorAll('[data-role-view]');
+      const roleFocusBanner = document.getElementById('roleFocusBanner');
+      const roleFocusBadge = document.getElementById('roleFocusBadge');
+      const roleFocusText = document.getElementById('roleFocusText');
+      const printResumeBtn = document.getElementById('printResumeBtn');
+
+      const focusableTargets = [
+        ...document.querySelectorAll('#projectsGrid .card, #research .research-card, #credentials .giac-card, #credentials .pedigree-card')
+      ];
+
+      const roleFocusConfig = {
+        healthcare: {
+          badge: 'HEALTHCARE SECURITY',
+          text: 'Highlighting 18+ years of clinical healthcare operations (LPN) alongside GCIH, GSEC, GISF, and threat detection/response readiness for healthcare environments.',
+          match: function (el) {
+            const txt = el.textContent || '';
+            return txt.includes('Licensed Practical Nurse') || txt.includes('GCIH') || txt.includes('GSEC') || txt.includes('GISF');
+          }
+        },
+        cloud: {
+          badge: 'CLOUD PENTESTING & OFFENSE',
+          text: 'Highlighting GCPN cloud penetration testing, AWS EC2 sensor/telemetry work, packet/protocol analysis, and U.S. Army & Air Force (Operation Noble Eagle) operational discipline.',
+          match: function (el) {
+            const txt = el.textContent || '';
+            return txt.includes('GCPN') || txt.includes('AWS EC2') || txt.includes('U.S. Army') || txt.includes('Port Knocking');
+          }
+        },
+        soc: {
+          badge: 'SOC / THREAT INTELLIGENCE',
+          text: 'Highlighting Honeypot-Omaha, batch.py enrichment, RIPLE Incident Lifecycle, SANS ISC Diary #33306, NCL telemetry rankings, and GCIA/GCIH/GPYC credentials.',
+          match: function (el) {
+            const txt = el.textContent || '';
+            return txt.includes('Honeypot-Omaha') || txt.includes('batch.py') || txt.includes('RIPLE') || txt.includes('SANS ISC') || txt.includes('NATIONAL CYBER LEAGUE') || txt.includes('GCIA') || txt.includes('GPYC');
+          }
+        }
+      };
+
+      function applyRoleFocus(view) {
+        roleButtons.forEach(function (b) {
+          b.classList.toggle('active', b.getAttribute('data-role-view') === view);
+        });
+
+        if (!view || view === 'all' || !roleFocusConfig[view]) {
+          if (roleFocusBanner) roleFocusBanner.hidden = true;
+          focusableTargets.forEach(function (el) {
+            el.classList.remove('focus-dimmed', 'focus-highlighted');
+          });
+          return;
+        }
+
+        const cfg = roleFocusConfig[view];
+        if (roleFocusBanner && roleFocusBadge && roleFocusText) {
+          roleFocusBadge.textContent = cfg.badge;
+          roleFocusText.textContent = cfg.text;
+          roleFocusBanner.hidden = false;
+        }
+
+        focusableTargets.forEach(function (el) {
+          const isMatch = cfg.match(el);
+          el.classList.toggle('focus-highlighted', isMatch);
+          el.classList.toggle('focus-dimmed', !isMatch);
+        });
+      }
+
+      roleButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          applyRoleFocus(btn.getAttribute('data-role-view'));
+        });
+      });
+
+      if (printResumeBtn) {
+        printResumeBtn.addEventListener('click', function () {
+          window.print();
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
