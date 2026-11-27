@@ -1737,51 +1737,33 @@
           </article>
         </div>
 
-        <!-- CTF Write-Up PDF Card -->
-        <article class="resume-card" aria-label="CTF Write-Up: Port Knocking Challenge">
+        <!-- CTF Methodology Card: Network Protocol & Packet Analysis -->
+        <article class="resume-card" aria-label="Packet Analysis Methodology: Port Knocking & Asynchronous ICMP Telemetry">
           <div class="resume-card-header">
             <div>
-              <span class="resume-tag">Network Security &bull; Packet Analysis</span>
-              <h4>CTF Write-Up: Port Knocking Challenge</h4>
+              <span class="resume-tag">Network Security &bull; Packet Analysis Methodology</span>
+              <h4>Port Knocking &amp; Asynchronous ICMP Telemetry Workflow</h4>
             </div>
-            <span class="resume-badge">6/6 Flags</span>
+            <span class="resume-badge">6/6 Tasks Solved</span>
           </div>
 
           <p class="resume-card-summary">
-            Analyzed PCAP traffic (<code>10.10.177.226</code> &harr; <code>10.10.177.228</code>)
-            using Wireshark/TShark and Scapy to decode hex-encoded ICMP Type 16 flag
-            payloads across six knocking tasks: ICMP Echo (Type 8), UDP ports 75, 31, and
-            31337, UDP echo/chargen (ports 7 and 19), and ICMP Type 15 Information
-            Request carrying a custom payload. Built an <code>AsyncSniffer</code> workflow
-            to capture asynchronous responses alongside ICMP Port Unreachable traffic.
+            Analyzed multi-protocol PCAP captures using TShark/Wireshark and custom Scapy
+            packet-crafting scripts to trigger and decode out-of-band ICMP Type 16
+            (Information Reply) hex-encoded responses across ICMP Echo (Type 8), targeted
+            UDP ports, Echo/Chargen exchanges, and custom-payload ICMP Type 15 Information
+            Requests. Built an <code>AsyncSniffer</code> listener to capture asynchronous
+            replies alongside ICMP Port Unreachable responses.
           </p>
 
           <ul class="resume-card-meta">
-            <li><strong>Tools:</strong> Scapy, TShark/Wireshark, tcpdump, Python</li>
-            <li><strong>Artifact:</strong> 7-page technical PDF write-up</li>
+            <li><strong>Tools:</strong> Scapy (<code>AsyncSniffer</code>), TShark/Wireshark, tcpdump, Python</li>
+            <li><strong>Compliance Note:</strong> Technical write-up available privately upon recruiter or practicum evaluator request</li>
           </ul>
-
-          <div class="resume-card-actions">
-            <button
-              type="button"
-              class="btn-preview-pdf"
-              data-pdf-src="./CTF_Write-Up_Port_Knocking_Challenge.pdf"
-              data-pdf-title="CTF Write-Up: Port Knocking Challenge (6/6 Flags)"
-            >
-              Preview Write-Up
-            </button>
-            <a
-              href="./CTF_Write-Up_Port_Knocking_Challenge.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Download PDF
-            </a>
-          </div>
         </article>
 
-        <!-- CTF Write-Up PDF Card: NSA Codebreaker Challenge -->
-        <article class="resume-card" aria-label="CTF Write-Up: NSA Codebreaker Challenge">
+        <!-- CTF Methodology Card: NSA Codebreaker Challenge -->
+        <article class="resume-card" aria-label="Host & Memory Forensics Methodology: NSA Codebreaker Challenge">
           <div class="resume-card-header">
             <div class="writeup-row-left">
               <img
@@ -1791,59 +1773,38 @@
               />
               <div>
                 <span class="resume-tag">Host Forensics &bull; Memory Analysis</span>
-                <h4>CTF Write-Up: NSA Codebreaker Challenge (2026)</h4>
+                <h4>NSA Codebreaker Challenge (2026) &mdash; Syslog &amp; Memory DFIR</h4>
               </div>
             </div>
             <span class="resume-badge">Task 1 Badge</span>
           </div>
 
           <p class="resume-card-summary">
-            Investigated execution syslog telemetry from a compromised Linux workstation
-            to trace anomalous process activity and isolate the malicious PID. Progressed
-            to volatile memory dump forensics (<code>memory-dirty.7z</code> /
-            <code>memory-dirty.raw</code>), verifying integrity against SHA-1 checksum
-            manifests and carving memory artifacts to uncover hidden adversary items.
+            Filtered multi-host Linux <code>syslog</code> telemetry to separate baseline service
+            traffic from unauthorized process execution, tracing hidden unit reloads,
+            checksum-validation bypasses, and child-process payload staging. Progressed
+            to volatile memory dump triage, verifying image integrity against SHA-1
+            checksum manifests and inspecting memory artifacts.
           </p>
 
           <ul class="resume-card-meta">
-            <li><strong>Tools:</strong> Volatility / Memory Forensics, Linux Syslog, SHA-1 Verification, CLI Forensics</li>
-            <li><strong>Artifact:</strong> Technical PDF write-up &amp; NSA Task 1 Badge</li>
+            <li><strong>Tools:</strong> Linux Syslog Forensics, Memory Dump Analysis, SHA-1 Integrity Verification, CLI Triage</li>
+            <li><strong>Compliance Note:</strong> Full write-up held private while the 2026 challenge window is active</li>
           </ul>
-
-          <div class="resume-card-actions">
-            <button
-              type="button"
-              class="btn-preview-pdf"
-              data-pdf-src="./CTF_Write-Up_NSA_Codebreaker_2026.pdf"
-              data-pdf-title="CTF Write-Up: NSA Codebreaker Challenge (Syslog & Memory Forensics)"
-            >
-              Preview Write-Up
-            </button>
-            <a
-              href="./CTF_Write-Up_NSA_Codebreaker_2026.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Download PDF
-            </a>
-          </div>
         </article>
 
-        <!-- Additional CTF Write-Ups & Labs Shelf -->
-        <div class="writeups-shelf" aria-label="Additional CTF Write-Ups and Labs">
+        <!-- Additional CTF Benchmarks & Lab Artifacts Shelf -->
+        <div class="writeups-shelf" aria-label="Competitive CTF Benchmarks and Lab Artifacts">
           <div class="writeups-shelf-header">
-            <span class="mono" style="font-size: 0.8rem; color: var(--accent-emerald);">// CTF WRITE-UPS &amp; LAB ARTIFACTS</span>
+            <span class="mono" style="font-size: 0.8rem; color: var(--accent-emerald);">// CTF BENCHMARKS &amp; FORENSIC ARTIFACTS</span>
           </div>
           <div class="writeups-list">
             <div class="writeup-row">
               <div>
-                <strong>Port Knocking Challenge (6/6 Flags)</strong>
-                <div class="mono" style="font-size: 0.78rem; color: var(--text-secondary);">Scapy &bull; TShark/Wireshark &bull; ICMP Type 15/16 &bull; UDP Knocks</div>
+                <strong>Port Knocking &amp; ICMP Type 15/16 Packet Crafting (6/6 Tasks)</strong>
+                <div class="mono" style="font-size: 0.78rem; color: var(--text-secondary);">Scapy AsyncSniffer &bull; TShark/Wireshark &bull; Hex Payload Decoding &bull; Private Write-Up on Request</div>
               </div>
-              <div class="resume-card-actions" style="padding-top: 0;">
-                <button type="button" class="btn-preview-pdf" data-pdf-src="./CTF_Write-Up_Port_Knocking_Challenge.pdf" data-pdf-title="CTF Write-Up: Port Knocking Challenge (6/6 Flags)">Preview PDF</button>
-                <a href="./CTF_Write-Up_Port_Knocking_Challenge.pdf" target="_blank" rel="noopener noreferrer">Open Tab &nearr;</a>
-              </div>
+              <span class="mono" style="font-size: 0.76rem; color: var(--accent-cyan);">6/6 SOLVED</span>
             </div>
 
             <div class="writeup-row">
@@ -2255,7 +2216,7 @@
       <div class="pdf-modal-body">
         <iframe
           id="pdfFrame"
-          title="CTF Write-Up: Port Knocking Challenge PDF Viewer"
+          title="CTF Write-Up PDF Viewer"
           loading="lazy"
         ></iframe>
       </div>
