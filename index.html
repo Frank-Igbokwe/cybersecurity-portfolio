@@ -29,6 +29,183 @@
     /* ==========================================================================
        DESIGN TOKENS & CORE VARIABLES (SOC / THREAT INTEL COMMAND AESTHETIC)
        ========================================================================== */
+<!-- Add inside <style> -->
+<style>
+  .resume-card {
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    background: var(--bg-surface);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .resume-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .resume-card-header h4 {
+    margin: 0.2rem 0 0;
+    color: var(--text-primary);
+  }
+
+  .resume-tag {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--accent-cyan);
+  }
+
+  .resume-badge {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.22rem 0.6rem;
+    border-radius: 999px;
+    background: var(--accent-emerald-dim);
+    color: #6ee7b7;
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    white-space: nowrap;
+  }
+
+  .resume-card-summary {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .resume-card-meta {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+  }
+
+  .resume-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    padding-top: 0.5rem;
+  }
+
+  .btn-preview-pdf {
+    padding: 0.55rem 1rem;
+    border-radius: var(--radius-sm);
+    background: var(--accent-cyan-dim);
+    color: var(--accent-cyan);
+    border: 1px solid var(--border-accent);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  .btn-preview-pdf:hover {
+    background: rgba(56, 189, 248, 0.22);
+  }
+
+  .resume-card-actions a {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent-emerald);
+  }
+
+  .pdf-modal[hidden] {
+    display: none;
+  }
+
+  .pdf-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 120;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .pdf-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 7, 18, 0.82);
+    backdrop-filter: blur(6px);
+  }
+
+  .pdf-modal-dialog {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 960px);
+    height: 85vh;
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
+  }
+
+  .pdf-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 1.15rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .pdf-modal-header h3 {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .pdf-modal-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+  }
+
+  .pdf-modal-controls a {
+    color: var(--accent-cyan);
+  }
+
+  .pdf-modal-controls button {
+    padding: 0.35rem 0.65rem;
+    border-radius: var(--radius-sm);
+    background: #0b1120;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .pdf-modal-body {
+    flex: 1;
+    min-height: 0;
+  }
+
+  .pdf-modal-body iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #ffffff;
+  }
+</style>
+
+
+
+
+    
     :root {
       --bg-canvas: #090d16;
       --bg-surface: #111827;
@@ -1095,8 +1272,58 @@
     }
   </style>
 </head>
+
+
+
+
+
+
+
+  
 <body>
 
+<!-- Add before </body> -->
+<div
+  id="pdfModal"
+  class="pdf-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="pdfModalTitle"
+  hidden
+>
+  <div class="pdf-modal-backdrop" data-close-pdf></div>
+  <div class="pdf-modal-dialog">
+    <div class="pdf-modal-header">
+      <h3 id="pdfModalTitle">PDF Preview</h3>
+      <div class="pdf-modal-controls">
+        <a
+          id="pdfModalExternal"
+          href="./assets/CTF_Write-Up_Port_Knocking_Challenge.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open in Tab &nearr;
+        </a>
+        <button
+          type="button"
+          id="closePdfModal"
+          aria-label="Close PDF preview"
+        >
+          ESC / Close
+        </button>
+      </div>
+    </div>
+    <div class="pdf-modal-body">
+      <iframe
+        id="pdfFrame"
+        title="CTF Write-Up: Port Knocking Challenge PDF Viewer"
+        loading="lazy"
+      ></iframe>
+    </div>
+  </div>
+</div>
+
+  
   <!-- ========================================================================
        TOP NAVIGATION BAR
        ======================================================================== -->
@@ -1366,70 +1593,6 @@
     </a>
   </div>
 </article>
-
-
-
-
-.resume-card {
-  border: 1px solid rgba(148, 163, 184, 0.25);
-  border-radius: 10px;
-  padding: 1.1rem 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.resume-card-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.75rem;
-}
-
-.resume-card-header h4 {
-  margin: 0.2rem 0 0;
-}
-
-.resume-tag {
-  font-size: 0.78rem;
-  opacity: 0.8;
-}
-
-.resume-badge {
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 0.2rem 0.55rem;
-  border-radius: 999px;
-  border: 1px solid currentColor;
-  white-space: nowrap;
-}
-
-.resume-card-summary {
-  margin: 0;
-  line-height: 1.5;
-}
-
-.resume-card-meta {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.25rem;
-  font-size: 0.9rem;
-}
-
-.resume-card-actions,
-.resume-table-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-
-
-
 
 
 
@@ -1863,6 +2026,63 @@
         });
       }
     })();
+
+// Add inside your existing IIFE in <script>
+const pdfModal = document.getElementById('pdfModal');
+const pdfFrame = document.getElementById('pdfFrame');
+const pdfModalTitle = document.getElementById('pdfModalTitle');
+const pdfModalExternal = document.getElementById('pdfModalExternal');
+const closePdfModalBtn = document.getElementById('closePdfModal');
+let lastPdfTrigger = null;
+
+function openPdfModal(src, title) {
+  if (!pdfModal || !pdfFrame || !src) return;
+  lastPdfTrigger = document.activeElement;
+  pdfFrame.setAttribute('src', src);
+  if (pdfModalTitle && title) pdfModalTitle.textContent = title;
+  if (pdfModalExternal) pdfModalExternal.setAttribute('href', src);
+  pdfModal.hidden = false;
+  document.body.style.overflow = 'hidden';
+  if (closePdfModalBtn) closePdfModalBtn.focus();
+}
+
+function closePdfModal() {
+  if (!pdfModal || pdfModal.hidden) return;
+  pdfModal.hidden = true;
+  document.body.style.overflow = '';
+  if (pdfFrame) pdfFrame.setAttribute('src', '');
+  if (lastPdfTrigger && typeof lastPdfTrigger.focus === 'function') {
+    lastPdfTrigger.focus();
+    lastPdfTrigger = null;
+  }
+}
+
+document.addEventListener('click', function (e) {
+  const trigger = e.target.closest('[data-pdf-src]');
+  if (trigger) {
+    e.preventDefault();
+    openPdfModal(
+      trigger.getAttribute('data-pdf-src'),
+      trigger.getAttribute('data-pdf-title')
+    );
+    return;
+  }
+
+  if (e.target.matches('[data-close-pdf]')) {
+    closePdfModal();
+  }
+});
+
+if (closePdfModalBtn) {
+  closePdfModalBtn.addEventListener('click', closePdfModal);
+}
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') {
+    closePdfModal();
+  }
+});
+    
   </script>
 </body>
 </html>
