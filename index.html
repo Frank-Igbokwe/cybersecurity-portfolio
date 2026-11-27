@@ -1275,53 +1275,10 @@
 
 
 
-
-
-
-
   
 <body>
 
-<!-- Add before </body> -->
-<div
-  id="pdfModal"
-  class="pdf-modal"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="pdfModalTitle"
-  hidden
->
-  <div class="pdf-modal-backdrop" data-close-pdf></div>
-  <div class="pdf-modal-dialog">
-    <div class="pdf-modal-header">
-      <h3 id="pdfModalTitle">PDF Preview</h3>
-      <div class="pdf-modal-controls">
-        <a
-          id="pdfModalExternal"
-          href="./assets/CTF_Write-Up_Port_Knocking_Challenge.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Open in Tab &nearr;
-        </a>
-        <button
-          type="button"
-          id="closePdfModal"
-          aria-label="Close PDF preview"
-        >
-          ESC / Close
-        </button>
-      </div>
-    </div>
-    <div class="pdf-modal-body">
-      <iframe
-        id="pdfFrame"
-        title="CTF Write-Up: Port Knocking Challenge PDF Viewer"
-        loading="lazy"
-      ></iframe>
-    </div>
-  </div>
-</div>
+
 
   
   <!-- ========================================================================
@@ -2084,5 +2041,45 @@ document.addEventListener('keydown', function (e) {
 });
     
   </script>
+<!-- Add before </body> -->
+<div
+  id="pdfModal"
+  class="pdf-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="pdfModalTitle"
+  hidden
+>
+  <div class="pdf-modal-backdrop" data-close-pdf></div>
+  <div class="pdf-modal-dialog">
+    <div class="pdf-modal-header">
+      <h3 id="pdfModalTitle">PDF Preview</h3>
+      <div class="pdf-modal-controls">
+        <a
+          id="pdfModalExternal"
+          href="./assets/CTF_Write-Up_Port_Knocking_Challenge.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open in Tab &nearr;
+        </a>
+        <button
+          type="button"
+          id="closePdfModal"
+          aria-label="Close PDF preview"
+        >
+          ESC / Close
+        </button>
+      </div>
+    </div>
+    <div class="pdf-modal-body">
+      <iframe
+        id="pdfFrame"
+        title="CTF Write-Up: Port Knocking Challenge PDF Viewer"
+        loading="lazy"
+      ></iframe>
+    </div>
+  </div>
+</div>  
 </body>
 </html>
