@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -262,6 +263,49 @@
       font-size: 0.76rem;
       color: var(--text-muted);
       margin-right: 0.25rem;
+    }
+
+    .role-focus-banner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.65rem 0.9rem;
+      margin-bottom: 1.5rem;
+      padding: 0.85rem 1.15rem;
+      border-radius: var(--radius-md);
+      background: rgba(17, 24, 39, 0.9);
+      border: 1px solid var(--border-accent);
+    }
+
+    .role-focus-banner[hidden] {
+      display: none;
+    }
+
+    .role-focus-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.22rem 0.6rem;
+      border-radius: 999px;
+      background: var(--accent-cyan-dim);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+    }
+
+    .role-focus-text {
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      margin: 0;
+    }
+
+    .focus-dimmed {
+      opacity: 0.42;
+      transition: opacity 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .focus-highlighted {
+      opacity: 1 !important;
+      border-color: var(--accent-cyan) !important;
+      box-shadow: var(--shadow-card), var(--shadow-glow);
     }
 
     .hero-grid {
@@ -1349,6 +1393,7 @@
       .navbar,
       .mobile-nav,
       .recruiter-toolbar,
+      .role-focus-banner,
       .filter-bar,
       .cta-group,
       .copy-split,
@@ -1385,6 +1430,14 @@
 
       .section {
         padding: 1.5rem 0 !important;
+        page-break-inside: avoid;
+      }
+
+      .sample-panel,
+      .writeups-shelf,
+      .resume-card,
+      .writeup-row {
+        break-inside: avoid;
         page-break-inside: avoid;
       }
     }
@@ -1451,6 +1504,11 @@
           <button type="button" class="btn btn-ghost" id="printResumeBtn" style="margin-left: auto; padding: 0.48rem 0.9rem; font-size: 0.82rem;">
             Print / Save Resume PDF
           </button>
+        </div>
+
+        <div id="roleFocusBanner" class="role-focus-banner" role="status" aria-live="polite" hidden>
+          <span id="roleFocusBadge" class="role-focus-badge mono">FOCUS</span>
+          <p id="roleFocusText" class="role-focus-text"></p>
         </div>
 
         <div class="hero-grid">
@@ -2276,27 +2334,72 @@
 
       // 6. Role Focus Switcher & Print Resume Trigger
       const roleButtons = document.querySelectorAll('[data-role-view]');
-      const pedigreeCards = document.querySelectorAll('.pedigree-card');
+      const roleFocusBanner = document.getElementById('roleFocusBanner');
+      const roleFocusBadge = document.getElementById('roleFocusBadge');
+      const roleFocusText = document.getElementById('roleFocusText');
       const printResumeBtn = document.getElementById('printResumeBtn');
+
+      const focusableTargets = [
+        ...document.querySelectorAll('#projectsGrid .card, #research .research-card, #credentials .giac-card, #credentials .pedigree-card')
+      ];
+
+      const roleFocusConfig = {
+        healthcare: {
+          badge: 'HEALTHCARE SECURITY',
+          text: 'Highlighting 18+ years of clinical healthcare operations (LPN) alongside GCIH, GSEC, GISF, and threat detection/response readiness for healthcare environments.',
+          match: function (el) {
+            const txt = el.textContent || '';
+            return txt.includes('Licensed Practical Nurse') || txt.includes('GCIH') || txt.includes('GSEC') || txt.includes('GISF');
+          }
+        },
+        cloud: {
+          badge: 'CLOUD PENTESTING & OFFENSE',
+          text: 'Highlighting GCPN cloud penetration testing, AWS EC2 sensor/telemetry work, packet/protocol analysis, and U.S. Army & Air Force (Operation Noble Eagle) operational discipline.',
+          match: function (el) {
+            const txt = el.textContent || '';
+            return txt.includes('GCPN') || txt.includes('AWS EC2') || txt.includes('U.S. Army') || txt.includes('Port Knocking');
+          }
+        },
+        soc: {
+          badge: 'SOC / THREAT INTELLIGENCE',
+          text: 'Highlighting Honeypot-Omaha, batch.py enrichment, RIPLE Incident Lifecycle, SANS ISC Diary #33306, NCL telemetry rankings, and GCIA/GCIH/GPYC credentials.',
+          match: function (el) {
+            const txt = el.textContent || '';
+            return txt.includes('Honeypot-Omaha') || txt.includes('batch.py') || txt.includes('RIPLE') || txt.includes('SANS ISC') || txt.includes('NATIONAL CYBER LEAGUE') || txt.includes('GCIA') || txt.includes('GPYC');
+          }
+        }
+      };
+
+      function applyRoleFocus(view) {
+        roleButtons.forEach(function (b) {
+          b.classList.toggle('active', b.getAttribute('data-role-view') === view);
+        });
+
+        if (!view || view === 'all' || !roleFocusConfig[view]) {
+          if (roleFocusBanner) roleFocusBanner.hidden = true;
+          focusableTargets.forEach(function (el) {
+            el.classList.remove('focus-dimmed', 'focus-highlighted');
+          });
+          return;
+        }
+
+        const cfg = roleFocusConfig[view];
+        if (roleFocusBanner && roleFocusBadge && roleFocusText) {
+          roleFocusBadge.textContent = cfg.badge;
+          roleFocusText.textContent = cfg.text;
+          roleFocusBanner.hidden = false;
+        }
+
+        focusableTargets.forEach(function (el) {
+          const isMatch = cfg.match(el);
+          el.classList.toggle('focus-highlighted', isMatch);
+          el.classList.toggle('focus-dimmed', !isMatch);
+        });
+      }
 
       roleButtons.forEach(function (btn) {
         btn.addEventListener('click', function () {
-          const view = btn.getAttribute('data-role-view');
-          roleButtons.forEach(function (b) {
-            b.classList.remove('active');
-          });
-          btn.classList.add('active');
-
-          pedigreeCards.forEach(function (card, idx) {
-            card.style.outline = '';
-            if (view === 'healthcare' && idx === 3) {
-              card.style.outline = '2px solid var(--accent-emerald)';
-            } else if (view === 'cloud' && (idx === 0 || idx === 2)) {
-              card.style.outline = '2px solid var(--accent-cyan)';
-            } else if (view === 'soc' && idx === 0) {
-              card.style.outline = '2px solid var(--accent-cyan)';
-            }
-          });
+          applyRoleFocus(btn.getAttribute('data-role-view'));
         });
       });
 
