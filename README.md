@@ -15,9 +15,9 @@ Applied Cybersecurity Engineer, Cloud Penetration Tester, Threat Intelligence & 
 ## Featured Systems & Research
 
 - **`Honeypot-Omaha` Enterprise Threat Intelligence & MSSP Platform:** Multi-tenant detection and response pipeline ingesting AWS EC2 DShield and Cowrie SSH/Telnet telemetry into PostgreSQL / SQLite WAL, featuring a four-display PyQt6 command dashboard, FastAPI portal, Scikit-Learn Isolation Forest UEBA anomaly detection, PCAP reconstruction, and SOAR / STIX 2.1 / SIEM CEF exports.
-- **[`honeypot-omaha-batch` (`batch.py`)](https://github.com/Frank-Igbokwe/honeypot-omaha-batch):** Open-source (BSL-1.1) automated log parsing and multi-source OSINT enrichment pipeline (`ip-api.com`, `cve.org`, VirusTotal, Shodan).
+- **[`honeypot-omaha-batch` (`batch.py`)]:** Open-source (BSL-1.1) automated log parsing and multi-source OSINT enrichment pipeline (`ip-api.com`, `cve.org`, VirusTotal, Shodan).
 - **RIPLE Incident Lifecycle Taxonomy:** Structured post-compromise methodology (*Reconnaissance, Initial exploitation, Persistence-Privilege escalation, Lateral movement, Exfiltration of data*) bridging SOC triage and CISO risk reporting.
-- **[SANS ISC Guest Diary #33306](https://isc.sans.edu/diary/33306):** Co-authored with Dr. Johannes Ullrich on empirical honeypot attack patterns and automated telemetry triage.
+- **[SANS ISC Guest Diary #33306]:** Co-authored with Dr. Johannes Ullrich on empirical honeypot attack patterns and automated telemetry triage.
 - **National Cyber League (Fall 2026):** Team *SANS.edu Ctrl+Alt+Defeat* — 223rd / 3,034 teams (93rd percentile overall; 99th percentile Password Cracking, 98th percentile Log & Network Traffic Analysis).
 
 ---
