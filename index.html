@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -2476,7 +2477,7 @@
       const printResumeBtn = document.getElementById('printResumeBtn');
 
       const focusableTargets = [
-        ...document.querySelectorAll('#projectsGrid .card, #research .research-card, #credentials .giac-card, #credentials .pedigree-card')
+        ...document.querySelectorAll('#projectsGrid .card, #projects .resume-card, #research .research-card, #credentials .giac-card, #credentials .pedigree-card')
       ];
 
       const roleFocusConfig = {
@@ -2501,7 +2502,7 @@
           text: 'Highlighting Honeypot-Omaha, batch.py enrichment, RIPLE Incident Lifecycle, SANS ISC Diary #33306, NCL telemetry rankings, and GCIA/GCIH/GPYC credentials.',
           match: function (el) {
             const txt = el.textContent || '';
-            return txt.includes('Honeypot-Omaha') || txt.includes('batch.py') || txt.includes('RIPLE') || txt.includes('SANS ISC') || txt.includes('NATIONAL CYBER LEAGUE') || txt.includes('GCIA') || txt.includes('GPYC');
+            return txt.includes('Honeypot-Omaha') || txt.includes('batch.py') || txt.includes('RIPLE') || txt.includes('SANS ISC') || txt.includes('NATIONAL CYBER LEAGUE') || txt.includes('NSA Codebreaker') || txt.includes('GCIA') || txt.includes('GPYC');
           }
         }
       };
